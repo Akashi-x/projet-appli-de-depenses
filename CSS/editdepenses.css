@@ -1,0 +1,52 @@
+body { 
+      background:#1C1430; 
+      color:white; 
+      font-family:Arial; 
+      padding:20px; 
+    }
+    form { 
+      background:#1B103E; 
+      padding:20px; 
+      border-radius:8px; 
+      width:300px; 
+      margin:auto; 
+    }
+    input, select, button { 
+      display:block;              /* force le bloc */
+      width:100%;                 /* pleine largeur */
+      margin:5px 0; 
+      padding:8px; 
+      border-radius:5px; 
+      border:none; 
+      background-color:#2A1F45; 
+      color:white; 
+      box-sizing:border-box;      /* important pour ne pas déborder */
+    }
+    option { 
+      color:white; 
+      background:#2A1F45; 
+    }
+    button { 
+      background:rgb(116,48,180); 
+      cursor:pointer; 
+    }
+    button:hover { 
+      opacity:0.9; 
+    }
+    label { 
+      font-weight:bold; 
+    }
+    a { 
+      text-decoration:none; 
+    }
+    /* Boutons alignés aux extrémités */
+.btn-group {
+  display: flex;
+  justify-content: space-between; /* espace entre les boutons */
+  margin-top: 10px;
+}
+
+.btn-group button {
+  width: 48%; /* chaque bouton prend presque la moitié du formulaire */
+  max-width: none; /* supprime la limite précédente */
+}
