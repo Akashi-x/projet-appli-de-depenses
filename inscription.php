@@ -1,0 +1,86 @@
+<?php
+require_once __DIR__ . '/config/config.php';
+
+$message = '';
+
+// Traitement du formulaire soumis
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $prenom = htmlspecialchars($_POST["PRENOM"]);
+    $nom_utilisateur = htmlspecialchars($_POST["NOM_UTILISATEUR"]);
+    $email = htmlspecialchars($_POST["EMAIL"]);
+    $mot_de_passe = $_POST["MOT_DE_PASSE"];
+
+    $hash = password_hash($mot_de_passe, PASSWORD_ARGON2ID);
+
+    $check = $mysqlClient->query("SELECT EMAIL FROM UTILISATEUR WHERE EMAIL = '$email'");
+    if ($check->rowCount() > 0) {
+        header("location: inscription.php?code=1");
+       
+    } else {
+        $sql = "INSERT INTO UTILISATEUR (PRENOM, NOM_UTILISATEUR, EMAIL, MOT_DE_PASSE) VALUES ('$prenom', '$nom_utilisateur', '$email', '$hash')";
+        $mysqlClient->exec($sql);
+        header("location: inscription.php?code=2");
+        exit();
+    }
+}
+
+if (isset($_GET['code'])) {
+    $code = $_GET['code'];
+    if ($code == '1') {
+        $message = '<p style="color: red; font-size: 18px;">❌ Cet e-mail a déjà été utilisé.</p>';
+    } else if ($code == '2') {
+        $message = '<p style="color: green; font-size: 18px;">✅ Inscription réussie !</p>';
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style_inscription.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>Page d'inscription</title>
+</head>
+<body>
+    <div>
+        <div>
+    <form action="inscription.php" method="post" id="inscription">
+      
+        <h3>INSCRIPTION</h3> <hr>
+        
+        <div>
+        <label>Prénom</label>
+        <input type="text" name="PRENOM" placeholder="Entrez votre prénom"required>
+        </div>
+         <div>
+        <label>Nom</label>
+        <input type="text" name="NOM_UTILISATEUR" 
+        placeholder="Entrez votre Nom" required> <br>
+        </div>
+        
+        <div>
+            <label>Adresse e-mail</label>
+        <input type="email" name="EMAIL" placeholder="Entrez votre e-mail" required> 
+        </div>
+         
+        <div>
+            <label>Mot de passe</label>
+        <input type="password" name="MOT_DE_PASSE" placeholder="Entrez votre mot de passe" required> <br> <br>
+        </div>
+        <div class="conf">
+        <input type="submit" value="S'inscrire">
+        <input type="reset" value="Annuler">
+        </div>
+        <p> Vous avez déja un compte?<a href="">Connecter vous</a></p>
+       
+       <br>
+       <?php echo $message; ?>
+         
+        
+    </form>
+    </div>  
+
+</body>
+</html>  
