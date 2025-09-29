@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  background-color: #1C1430;
+  height: 90vh;
+}
+form{
+  display: flex;
+  flex-direction: column;
+  background-color: #1B103E;
+  padding: 3rem;
+  border-radius: 12px;
+  color: rgb(255, 255, 255);
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+   height: 550px;
+   margin:auto;
+   width:27.5% ;
+   margin-top: 5%;
+   font-size: large;
+
+}
+.form_mdp{
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  padding: 0.5rem;
+  border-radius: 12px;
+  height: 250px;
+  margin-top: 15%;
+  width:30% ;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+
+}
+.sub_mdp{
+display: flex;
+margin-top: 12%;
+width: 70%;
+}
+.inp_mdp{
+  border-radius: 8px;
+  width: 85%;
+  height: 10%;
+}
+
+
+.form_conf{
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  padding: 1px;
+  border-radius: 12px;
+  height: 250px;
+  margin-top: 15%;
+  width:30% ;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.mdp_conf{
+  display: flex;
+  justify-content: center ;
+  flex-direction: column;
+  width: 80%;
+}
+.sub_conf{
+  display: flex;
+  margin-top: 5%;
+  margin:auto;
+  width: 80%;
+}
+.ct{
+   font-size:30px ;
+  color: white;
+  position: absolute;
+  top: 26%;
+  right: 33%;
+}
+h3{
+  text-align: center;
+
+}
+hr{
+  margin: 10px ;
+}
+input{
+  margin-bottom: 5px;
+  padding: 5px;
+}
+input[type="submit"],input[type="reset"]  {
+  background-color: rgb(116, 48, 180);
+  color: white;
+  border-radius: 3px;
+  padding: 8px;
+  flex: 1;
+  font-size: large;
+}
+.conf{
+  display: flex;
+  gap: 5px;
+}
+
+p{
+  text-align: center;
+  font-size: 16px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background-color: #2A1F45;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 13px;
+  width: 100%;
+
+}
+
+.mdp{
+  color: rgb(116, 48, 180);
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+}
+
+/* Styles pour les messages d'erreur et de succès */
+.error-message {
+  color: red;
+  text-align: center;
+  margin: 20px;
+  padding: 10px;
+  background-color: #ffe6e6;
+  border: 1px solid #ff9999;
+  border-radius: 5px;
+}
+
+.success-message {
+  color: green;
+  text-align: center;
+  margin: 20px;
+  padding: 10px;
+  background-color: #e6ffe6;
+  border: 1px solid #99ff99;
+  border-radius: 5px;
+}
+
+/* Styles pour l'email de réinitialisation */
+.email-container {
+  font-family: Poppins, Arial, sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #1C1430;
+  color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.email-header {
+  background-color: #1B103E;
+  padding: 30px;
+  text-align: center;
+  border-bottom: 3px solid #742CB4;
+}
+
+.email-header h1 {
+  color: #742CB4;
+  font-size: 28px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.email-header h2 {
+  color: white;
+  font-size: 20px;
+  margin: 10px 0 0 0;
+  font-weight: normal;
+}
+
+.email-content {
+  padding: 30px;
+  background-color: #1C1430;
+}
+
+.email-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.email-content strong {
+  color: #742CB4;
+}
+
+.email-code {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 30px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  border-radius: 12px;
+  margin: 25px 0;
+  letter-spacing: 5px;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+  border: 3px solid white;
+}
+
+.email-warning {
+  background-color: #1B103E;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 25px 0;
+  border-left: 4px solid #742CB4;
+}
+
+.email-warning p {
+  color: #742CB4;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 0 15px 0;
+}
+
+.email-warning ul {
+  margin: 0;
+  padding-left: 20px;
+  color: white;
+}
+
+.email-warning li {
+  margin-bottom: 8px;
+}
+
+.email-footer {
+  background-color: #1B103E;
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #742CB4;
+}
+
+.email-footer p {
+  color: #742CB4;
+  font-size: 14px;
+  margin: 0;
+  font-weight: bold;
+}
+
+.email-footer .email-note {
+  color: #999;
+  font-size: 12px;
+  margin: 10px 0 0 0;
+} 
+

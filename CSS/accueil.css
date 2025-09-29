@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #1C1430;
+  color: white;
+  height: 100vh;
+}
+
+
+/* === Layout principal === */
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-areas: "sidebar main";
+  height: 100vh;
+}
+
+/* === Sidebar === */
+.sidebar {
+  grid-area: sidebar;
+  background: #1b103e;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(116, 48, 180, 0.2);
+}
+
+
+.titre {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 1px solid #4b2c82;
+  margin-bottom: 30px;
+}
+.titre h2 {
+  margin-top: 10px;
+  font-size: 24px;
+  color: #742CB4;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 18px;
+  margin-bottom: 20px;
+  margin-left: px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar ul li i {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+  background: #4b2c82;
+}
+
+/* === Main === */
+.main {
+  grid-area: main;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto auto auto;
+  grid-template-areas:
+    "header header"
+    "introduction introduction"
+    "solde solde"
+    "stats1 stats2"
+    "transactions transactions";
+  gap: 20px;
+  padding: 20px;
+}
+
+.header {
+  grid-area: header;
+  background: #1b103e;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(116, 48, 180, 0.2);
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.header h1{
+    color: #742CB4;
+}
+
+.header .user {
+  font-size: 14px;
+  color: #bbb;
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #742CB4 0%, #9B59B6 100%);
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(116, 44, 180, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-btn:hover {  
+  box-shadow: 0 6px 20px rgba(116, 44, 180, 0.4);
+  background: linear-gradient(135deg, #8B3CC4 0%, #AB69C6 100%);
+}
+
+.introduction {
+  grid-area: introduction;
+  background: linear-gradient(135deg, #742CB4 0%, #9B59B6 100%);
+  box-shadow: 0 5px 20px rgba(116, 48, 180, 0.3);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+}
+.introduction p{
+  font-size: 17px;
+}
+.introduction h1{
+  font-size: 45px;
+}
+
+/* Stats */
+.solde, .stats1, .stats2 {
+  background: #1b103e;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(116, 48, 180, 0.2);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+.solde { grid-area: solde; padding: 30px; }
+.solde .solde-valeur { font-weight: 800; font-size: 48px; }
+.solde .positif { color: #09f999; }
+.solde .negatif { color: #ff5555; }
+.stats1 span { color: #55ff55; font-weight: bold; font-size: 35px;}
+.stats2 span { color: #ff5555; font-weight: bold; font-size: 35px;}
+
+/* Transactions */
+.transactions {
+  grid-area: transactions;
+  background: #1b103e;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(116, 48, 180, 0.2);  
+  padding: 20px;
+  border-radius: 12px;
+}
+.transactions h2 {
+  margin-bottom: 15px;
+  border-bottom: 3px solid #4b2c82;
+  color: #742CB4;
+}
+
+/* Tableau des transactions */
+.transaction {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.transaction th {
+  background: #4b2c82;
+  color: white;
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  border-bottom: 2px solid #742CB4;
+}
+
+.transaction td {
+  padding: 12px;
+  border-bottom: 1px solid #4b2c82;
+  color: #e5e7eb;
+}
+
+.transaction tr:hover {
+  background: rgba(116, 44, 180, 0.1);
+}
+
+.transaction th:first-child,
+.transaction td:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.transaction th:last-child,
+.transaction td:last-child {
+  border-radius: 0 8px 8px 0;
+}
+
+.montant {
+  font-weight: bold;
+}
+.montant.positif {
+  color: #55ff55;
+}
+.montant.negatif {
+  color: #ff5555;
+} 
