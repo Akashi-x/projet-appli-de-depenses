@@ -1,0 +1,57 @@
+ body { 
+      background: #1C1430; 
+      color: white; 
+      font-family: Arial, sans-serif; 
+      padding: 20px; 
+    }
+    .Profil-container {
+      max-width: 400px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+    }
+    form { 
+      background: #1B103E; 
+      padding: 20px; 
+      border-radius: 8px; 
+    }
+    .champ { 
+      display: block;
+      width: 100%;
+      margin: 5px 0 15px 0; 
+      padding: 8px; 
+      border-radius: 5px; 
+      border: none; 
+      background-color: #2A1F45; 
+      color: white; 
+      box-sizing: border-box; 
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+    label { 
+      font-weight: bold; 
+      display: block;
+      margin-top: 10px;
+    }
+    button { 
+      background: rgb(116,48,180); 
+      cursor: pointer; 
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px;
+      font-size: 14px;
+    }
+    button:hover { 
+      opacity: 0.9; 
+    }
+    /* Boutons alignés aux extrémités */
+    .but {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .but button {
+      width: 48%;
+    }
