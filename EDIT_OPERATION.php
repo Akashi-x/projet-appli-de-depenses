@@ -1,5 +1,4 @@
 <?php
-// edit_operation.php
 require_once __DIR__ . "/config/config.php";
 
 // Vérifier qu'un ID est fourni
