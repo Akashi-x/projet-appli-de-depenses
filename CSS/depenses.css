@@ -1,0 +1,86 @@
+body {
+    background-color: #1C1430;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+.container {
+    width: 90%;
+    margin: auto;
+    background: #1B103E;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Bande colorée du titre */
+h1 {
+    text-align: center;
+    background-color: rgb(116,48,180);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.btn-container {
+    text-align: center;
+    margin: 20px 0;
+}
+.btn-ajouter {
+    background-color: rgb(116,48,180);
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    font-size: 18px;
+    border-radius: 8px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+/* Supprimer les traits verticaux */
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #444; /* uniquement horizontal */
+    text-align: center;
+}
+
+/* Ligne d’en-tête */
+th {
+    background-color: rgb(116,48,180);
+}
+
+/* Boutons */
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+.btn-modifier { background-color: rgb(116,48,180); }
+.btn-supprimer { background-color: rgb(116,48,180); }
+
+.tabs {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.tab-btn {
+    padding: 10px 20px;
+    margin-right: 5px;
+    cursor: pointer;
+    background-color: rgb(116,48,180);
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+/* Montants */
+.montant {
+    color: red;
+    font-weight: bold;
+}
