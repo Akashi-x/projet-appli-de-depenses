@@ -41,21 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="utf-8">
   <title>Modifier dépense</title>
-  <link rel="stylesheet" href="CSS\editdepenses.css">
+  <link rel="stylesheet" href="CSS/editdepenses.css">
 </head>
 <body>
   <h1 style="text-align:center;">Modifier dépense</h1>
 
   <form method="post">
-    <label>Date :</label>
-    <input type="date" name="date_operation" value="<?= htmlspecialchars($operation['DATE_OPERATION'] ?? '') ?>" required>
-
-    <label>Description :</label>
-    <input type="text" name="description" value="<?= htmlspecialchars($operation['DESCRIPTION'] ?? '') ?>" required>
-
-    <label>Montant :</label>
-    <input type="number" name="montant" value="<?= htmlspecialchars($operation['MONTANT'] ?? '') ?>" required>
-
     <label>Catégorie :</label>
     <select name="id_categorie" required>
       <?php foreach ($categories as $cat): ?>
@@ -65,6 +56,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </option>
       <?php endforeach; ?>
     </select>
+    <label>Montant :</label>
+    <input type="number" name="montant" step="0.01" value="<?= htmlspecialchars($operation['MONTANT'] ?? '') ?>" required>
+
+    <label>Date :</label>
+    <input type="date" name="date_operation"
+           max="<?= date('Y-m-d') ?>"
+           value="<?= htmlspecialchars(date('y-m-d', strtotime($operation['DATE_OPERATION'] ?? ''))) ?>"
+           required>
+
+    <label>Description :</label>
+    <input type="text" name="description" value="<?= htmlspecialchars($operation['DESCRIPTION'] ?? '') ?>" required>
+
+    
+    <?php if ($erreur): ?>
+      <div style="color: #a00; font-weight: bold; margin-top: 10px;">
+        <?= htmlspecialchars($erreur) ?>
+      </div>
+    <?php endif; ?>
 
     <div class="btn-group">
         <button type="submit">Enregistrer</button>
