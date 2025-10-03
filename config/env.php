@@ -1,6 +1,6 @@
 <?php
 $_host = 'localhost';
-$_database = 'suivi_depenses';
+$_database = 'gestion_depense';
 $_user = 'root';
 $_password = '';
 ?>
