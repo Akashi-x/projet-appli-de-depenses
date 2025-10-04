@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1C1430;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+
+.Profil {
+  width: 350px;
+  margin: 5% auto;
+  padding: 2rem;
+  background-color: #1B103E;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+
+.Profil h2 {
+  color: rgb(116, 48, 180);
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+/* Image de profil */
+.profil-image {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.profile-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 3px solid rgb(116, 48, 180);
+  transition: transform 0.2s ease-in-out;
+}
+
+.profile-icon:hover {
+  transform: scale(1.05);
+}
+
+/* Infos utilisateur */
+.Profil p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+/* Bouton modifier */
+.Profil button {
+  width: 150px;
+  height: 43px;
+  background-color: rgb(116, 48, 180);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.Profil button:hover {
+  background-color: rgb(90, 36, 150);
+}
