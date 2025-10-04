@@ -1,11 +1,11 @@
 <?php
-session_start();
 require_once(__DIR__ . '/config/config.php');
 
-$email_session = $_SESSION['EMAIL'] ?? null;
+// Utiliser l'ID utilisateur fixe comme dans vos autres pages
+$userId = 5;
 
-$stmt = $pdo->prepare("SELECT NOM_UTILISATEUR, PRENOM, EMAIL FROM utilisateur WHERE EMAIL = ?");
-$stmt->execute([$email_session]);
+$stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM, EMAIL FROM utilisateur WHERE ID_UTILISATEUR = ?");
+$stmt->execute([$userId]);
 $user = $stmt->fetch();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,15 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             die("⚠️ Les mots de passe ne correspondent pas !");
         }
         $hashed = password_hash($_POST['password'], PASSWORD_ARGON2ID);
-        $stmt = $pdo->prepare("UPDATE utilisateur SET MOT_DE_PASSE = ? WHERE EMAIL = ?");
-        $stmt->execute([$hashed, $email_session]);
+        $stmt = $mysqlClient->prepare("UPDATE utilisateur SET MOT_DE_PASSE = ? WHERE ID_UTILISATEUR = ?");
+        $stmt->execute([$hashed, $userId]);
     }
 
     // Mise à jour infos de base
-    $stmt = $pdo->prepare("UPDATE utilisateur SET NOM_UTILISATEUR = ?, PRENOM = ?, EMAIL = ? WHERE EMAIL = ?");
-    $stmt->execute([$nom, $prenom, $newEmail, $email_session]);
-
-    $_SESSION['EMAIL'] = $newEmail;
+    $stmt = $mysqlClient->prepare("UPDATE utilisateur SET NOM_UTILISATEUR = ?, PRENOM = ?, EMAIL = ? WHERE ID_UTILISATEUR = ?");
+    $stmt->execute([$nom, $prenom, $newEmail, $userId]);
 
     header("Location: profil.php");
     exit;
@@ -51,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="text" class="champ" name="NOM_UTILISATEUR" value="<?= htmlspecialchars($user['NOM_UTILISATEUR']) ?>" required>
 
         <label>Email</label>
-        <input type="email" class="champ" name="EMAIL" value="<?= htmlspecialchars($user['EMAIL']) ?>" readonly>
+        <input type="email" class="champ" name="EMAIL" value="<?= htmlspecialchars($user['EMAIL']) ?>" required>
 
         <label>Nouveau mot de passe</label>
         <input type="password" class="champ" name="password">
