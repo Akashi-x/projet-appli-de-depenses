@@ -6,7 +6,7 @@ $userId = 5;
 
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
 $stmt->execute([$userId]);
-$user = $stmt->fetch();
+$user = $stmt->fetch(); 
 
 // Revenus totaux
 $stmt = $mysqlClient->prepare("SELECT SUM(o.MONTANT) as total FROM operation o, categorie c, type t WHERE o.ID_CATEGORIE = c.ID_CATEGORIE AND c.ID_TYPE = t.ID_TYPE AND t.NOM_TYPE = 'Revenu' AND o.ID_UTILISATEUR = ? AND MONTH(o.DATE_OPERATION) = MONTH(CURRENT_DATE()) AND YEAR(o.DATE_OPERATION) = YEAR(CURRENT_DATE())");
