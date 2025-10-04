@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div class="but">
             <button type="submit">Enregistrer</button>
-            <button type="button" onclick="window.location.href='profil.php'">Annuler</button>
+            <button type="button" onclick="window.location.href='mesdepenses.php'">Annuler</button>
         </div>
     </form>
 </div>
