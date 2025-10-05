@@ -1,11 +1,14 @@
 <?php
 require_once __DIR__ . "/config/config.php";
 
+// Utiliser l'ID utilisateur fixe comme dans vos autres pages
+$userId = 5;
+
 // Vérifier qu'un ID est fourni
 if (!empty($_GET['id'])) {
     $id = (int) $_GET['id'];
-    $stmt = $pdo->prepare("SELECT * FROM operation WHERE ID_OPERATIONS_ = ?");
-    $stmt->execute([$id]);
+    $stmt = $mysqlClient->prepare("SELECT * FROM operation WHERE ID_OPERATIONS_ = ? AND ID_UTILISATEUR = ?");
+    $stmt->execute([$id, $userId]);
     $operation = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$operation) {
         die("Opération introuvable !");
@@ -15,7 +18,7 @@ if (!empty($_GET['id'])) {
 }
 
 // Charger toutes les catégories
-$stmtCat = $pdo->query("SELECT * FROM categorie ORDER BY NOM_CATEGORIE ASC");
+$stmtCat = $mysqlClient->query("SELECT * FROM categorie ORDER BY NOM_CATEGORIE ASC");
 $categories = $stmtCat->fetchAll(PDO::FETCH_ASSOC);
 
 // Mise à jour si formulaire soumis
@@ -25,12 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date = $_POST['date_operation'];
     $id_categorie = $_POST['id_categorie'];
 
-    $stmt = $pdo->prepare("
+    $stmt = $mysqlClient->prepare("
         UPDATE operation 
         SET DESCRIPTION=?, MONTANT=?, DATE_OPERATION=?, ID_CATEGORIE=? 
-        WHERE ID_OPERATIONS_=?
+        WHERE ID_OPERATIONS_=? AND ID_UTILISATEUR=?
     ");
-    $stmt->execute([$desc, $montant, $date, $id_categorie, $id]);
+    $stmt->execute([$desc, $montant, $date, $id_categorie, $id, $userId]);
 
     header("Location: mesdepenses.php");
     exit;
@@ -68,12 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Description :</label>
     <input type="text" name="description" value="<?= htmlspecialchars($operation['DESCRIPTION'] ?? '') ?>" required>
 
-    
-    <?php if ($erreur): ?>
-      <div style="color: #a00; font-weight: bold; margin-top: 10px;">
-        <?= htmlspecialchars($erreur) ?>
-      </div>
-    <?php endif; ?>
 
     <div class="btn-group">
         <button type="submit">Enregistrer</button>

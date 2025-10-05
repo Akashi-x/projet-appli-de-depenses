@@ -54,7 +54,7 @@ foreach ($operations as $index => $op) {
       <ul>
         <li><a href="accueil.php" style="color: white; text-decoration: none; display: block; width: 100%; height: 100%;"><i class="fa-solid fa-house"></i> Accueil</a></li>
         <li><i class="fa-solid fa-wallet"></i> Revenus</li>
-        <li><i class="fa-solid fa-credit-card"></i>Dépenses</li>
+        <li><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
         <li class="active"><i class="fa-solid fa-chart-pie"></i>  Activité</li>
       </ul>
     </aside>
@@ -63,7 +63,7 @@ foreach ($operations as $index => $op) {
       <header class="header">
         <h1>Activité</h1> 
         <div class="user-profile">
-          <a href="#" class="profile-btn"><i class="fa-solid fa-user"></i></a>
+          <a href="profil.php" class="profile-btn"><i class="fa-solid fa-user"></i></a>
           <div class="D">
             <h4><?php echo $user['PRENOM']; ?></h4>
             <p>Utilisateur</p>

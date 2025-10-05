@@ -50,7 +50,7 @@ $soldeActuel = $totalRevenus - $totalDepenses;
       <ul>
         <li class="active"><i class="fa-solid fa-house"></i> Accueil</li>
         <li><i class="fa-solid fa-wallet"></i> Revenus</li>
-        <li><i class="fa-solid fa-credit-card"></i>Dépenses</li>
+        <li><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
         <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
       </ul>
     </aside>
@@ -59,7 +59,7 @@ $soldeActuel = $totalRevenus - $totalDepenses;
     <main class="main">
       <header class="header"><h1>Accueil</h1> 
       <div class="user-profile">
-          <a href="#" class="profile-btn">  <i class="fa-solid fa-user"></i></a>
+          <a href="profil.php" class="profile-btn">  <i class="fa-solid fa-user"></i></a>
         <div class="D">
         <h4><?php echo $user['PRENOM']; ?></h4>
         <p>Utilisateur</p>

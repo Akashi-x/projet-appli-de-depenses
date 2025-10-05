@@ -1,86 +1,101 @@
-body {
-    background-color: #1C1430;
-    color: white;
-    font-family: Arial, sans-serif;
-    padding: 20px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
+
+body {
+  background-color: #1C1430;
+  color: white;
+  height: 100vh;
+}
+
+/* === Layout principal === */
 .container {
-    width: 90%;
-    margin: auto;
-    background: #1B103E;
-    padding: 20px;
-    border-radius: 8px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-template-areas: "sidebar main";
+  height: 100vh;
 }
 
 /* Bande colorée du titre */
 h1 {
-    text-align: center;
-    background-color: rgb(116,48,180);
-    padding: 15px;
-    border-radius: 8px;
+  text-align: center;
+  background-color: rgb(116,48,180);
+  padding: 15px;
+  border-radius: 8px;
 }
 
 .btn-container {
-    text-align: center;
-    margin: 20px 0;
+  text-align: center;
+  margin: 20px 0;
 }
 .btn-ajouter {
-    background-color: rgb(116,48,180);
-    color: white;
-    text-decoration: none;
-    padding: 12px 25px;
-    font-size: 18px;
-    border-radius: 8px;
-    display: inline-block;
-    cursor: pointer;
+  background-color: rgb(116,48,180);
+  color: white;
+  text-decoration: none;
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 8px;
+  display: inline-block;
+  cursor: pointer;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
 }
 
 /* Supprimer les traits verticaux */
 th, td {
-    padding: 10px;
-    border-bottom: 1px solid #444; /* uniquement horizontal */
-    text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #444; /* uniquement horizontal */
+  text-align: center;
 }
 
 /* Ligne d’en-tête */
 th {
-    background-color: rgb(116,48,180);
+  background-color: rgb(116,48,180);
 }
 
 /* Boutons */
 .btn {
-    padding: 6px 12px;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    text-decoration: none;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
 }
 .btn-modifier { background-color: rgb(116,48,180); }
 .btn-supprimer { background-color: rgb(116,48,180); }
 
 .tabs {
-    text-align: center;
-    margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 .tab-btn {
-    padding: 10px 20px;
-    margin-right: 5px;
-    cursor: pointer;
-    background-color: rgb(116,48,180);
-    color: white;
-    border: none;
-    border-radius: 5px;
+  padding: 10px 20px;
+  margin-right: 5px;
+  cursor: pointer;
+  background-color: rgb(116,48,180);
+  color: white;
+  border: none;
+  border-radius: 5px;
 }
 
 /* Montants */
 .montant {
-    color: red;
-    font-weight: bold;
+  color: red;
+  font-weight: bold;
+}
+
+/* === Main === */
+.main-content {
+  grid-area: main;
+  padding: 20px;
+  background: #1B103E;
+  overflow-y: auto;
 }

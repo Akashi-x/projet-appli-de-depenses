@@ -1,12 +1,12 @@
 <?php
-session_start();
 require_once(__DIR__ . '/config/config.php');
 
-$email_session = $_SESSION['EMAIL'] ?? null;
+// Utiliser l'ID utilisateur fixe comme dans vos autres pages
+$userId = 5;
 
 // Récupérer les informations de l'utilisateur
-$stmt = $pdo->prepare("SELECT NOM_UTILISATEUR, PRENOM, EMAIL FROM utilisateur WHERE EMAIL = ?");
-$stmt->execute([$email_session]);
+$stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM, EMAIL FROM utilisateur WHERE ID_UTILISATEUR = ?");
+$stmt->execute([$userId]);
 $user = $stmt->fetch();
 ?>
 
@@ -15,7 +15,7 @@ $user = $stmt->fetch();
 <head>
     <meta charset="UTF-8">
     <title>Profil utilisateur</title>
-    <link rel="stylesheet" href="CSS\profil.css">
+    <link rel="stylesheet" href="CSS/profil.css">
 </head>
 <body>
     <div class="Profil">

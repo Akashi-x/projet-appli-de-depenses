@@ -1,38 +1,68 @@
 <?php
 require_once __DIR__ . "/config/config.php";
 
+// Utiliser l'ID utilisateur fixe comme dans vos autres pages
+$userId = 5;
+
+// Récupérer les informations de l'utilisateur
+$stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
+$stmt->execute([$userId]);
+$user = $stmt->fetch();
+
 //  Dépenses du mois courant
-$stmtMois = $pdo->prepare("
+$stmtMois = $mysqlClient->prepare("
     SELECT operation.ID_OPERATIONS_, operation.DATE_OPERATION, operation.DESCRIPTION, operation.MONTANT, categorie.NOM_CATEGORIE
     FROM operation
     LEFT JOIN categorie ON operation.ID_CATEGORIE = categorie.ID_CATEGORIE
-    WHERE MONTH(DATE_OPERATION) = MONTH(CURRENT_DATE())
+    WHERE operation.ID_UTILISATEUR = ? 
+      AND MONTH(DATE_OPERATION) = MONTH(CURRENT_DATE())
       AND YEAR(DATE_OPERATION) = YEAR(CURRENT_DATE())
     ORDER BY DATE_OPERATION DESC
 ");
-$stmtMois->execute();
+$stmtMois->execute([$userId]);
 $depensesMois = $stmtMois->fetchAll(PDO::FETCH_ASSOC);
 
 // Toutes les dépenses
-$stmt = $pdo->prepare("
+$stmt = $mysqlClient->prepare("
     SELECT operation.ID_OPERATIONS_, operation.DATE_OPERATION, operation.DESCRIPTION, operation.MONTANT, categorie.NOM_CATEGORIE
     FROM operation
     LEFT JOIN categorie ON operation.ID_CATEGORIE = categorie.ID_CATEGORIE
+    WHERE operation.ID_UTILISATEUR = ?
     ORDER BY operation.DATE_OPERATION DESC
 ");
-$stmt->execute();
+$stmt->execute([$userId]);
 $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <title>Liste des Dépenses</title>
-<link rel="stylesheet" href="CSS\depenses.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="CSS/depenses.css">
+  <link rel="stylesheet" href="CSS/accueil.css">
+
 </head>
 <body>
 <div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar" style="font-size: 17px;">
+        <div class="titre" style="font-weight: bold;">
+      <h2>💰 Suivi Dépenses</h2>
+      <p style="font-size: 16px;padding: 6px;">Gérez vos finances</p>
+      </div>
+      <ul>
+        <li><i class="fa-solid fa-house"></i> Accueil</li>
+        <li><i class="fa-solid fa-wallet"></i> Revenus</li>
+        <li class="active"><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
+        <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
+      </ul>
+    </aside>
+  <!-- Main Content -->
+  <main class="main-content">
     <h1>MES DEPENSES 💸💸</h1>
 
     <!-- Bouton Ajouter centré -->
@@ -95,6 +125,7 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </table>
     </div>
+  </main>
 </div>
 
 <script>
