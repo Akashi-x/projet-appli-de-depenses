@@ -93,8 +93,8 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td><?= htmlspecialchars($d['DESCRIPTION'] ?? '') ?></td>
                 <td class="montant">-<?= htmlspecialchars($d['MONTANT'] ?? '') ?> CFA</td>
                 <td>
-                    <a href="edit_operation.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn btn-modifier">Modifier</a>
-                    <a href="modifoperation.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn btn-supprimer">Supprimer</a>
+                    <a href="modifoperation.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn btn-modifier">Modifier</a>
+                    <a href="delete_operation.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn btn-supprimer">Supprimer</a>
                 </td>
             </tr>
             <?php endforeach; ?>
