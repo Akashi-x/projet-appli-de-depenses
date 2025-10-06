@@ -55,8 +55,8 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <p style="font-size: 16px;padding: 6px;">Gérez vos finances</p>
       </div>
       <ul>
-        <li><i class="fa-solid fa-house"></i> Accueil</li>
-        <li><i class="fa-solid fa-wallet"></i> Revenus</li>
+        <li> <a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
+        <li><a href="" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
         <li class="active"><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
         <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
       </ul>
