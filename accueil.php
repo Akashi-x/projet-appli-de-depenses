@@ -37,6 +37,8 @@ $soldeActuel = $totalRevenus - $totalDepenses;
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="CSS/accueil.css">
+  <link rel="stylesheet" href="CSS/dropdown.css">
+  <link rel="stylesheet" href="CSS/sidebar.css">
   <title>Suivi Dépenses</title>
 </head>
 <body>
@@ -49,26 +51,36 @@ $soldeActuel = $totalRevenus - $totalDepenses;
       </div>
       <ul>
         <li class="active"><i class="fa-solid fa-house"></i> Accueil</li>
-        <li><i class="fa-solid fa-wallet"></i> Revenus</li>
+        <li><a href="liste_rentree.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
         <li><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
         <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
       </ul>
+      <div class="sidebar-footer">
+        <a href="deconnexion.php" class="logout-sidebar">
+          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+        </a>
+      </div>
     </aside>
 
     <!-- Main -->
     <main class="main">
       <header class="header"><h1>Accueil</h1> 
-      <div class="user-profile">
-          <a href="profil.php" class="profile-btn">  <i class="fa-solid fa-user"></i></a>
-        <div class="D">
-        <h4><?php echo $user['PRENOM']; ?></h4>
-        <p>Utilisateur</p>
-        </div>
+        <div class="user-profile">
+          <a href="profil.php" class="profile-btn">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <div class="user-dropdown">
+            <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
+            <div class="dropdown-menu" id="userDropdown">
+              <a href="profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
+              <a href="deconnexion.php"><i class="fa-solid fa-sign-out-alt"></i> Déconnexion</a>
+            </div>
+          </div>
         </div>
     </header>
 
       <section class="introduction">
-         <h1> 👋 Bonjour, <?php echo $user['PRENOM']; ?> !</h1>      
+         <h1> 👋 Bonjour, <?php echo $user['NOM_UTILISATEUR']; ?> !</h1>      
         <p>Bienvenue sur votre tableau de bord de suivi des dépenses</p>
       </section>
 
@@ -114,5 +126,7 @@ $soldeActuel = $totalRevenus - $totalDepenses;
       </section>
     </main>
   </div>
+
+  <script src="JS/dropdown.js"></script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+/* Sidebar Footer */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.sidebar-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.logout-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.logout-sidebar:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+/* Ajustement pour le contenu principal avec sidebar fixe */
+/* Supprimé le margin-left global pour éviter le décalage avec la grille */
+.main {
+  padding: 20px;
+  min-height: 100vh;
+}
+
+/* Pour les pages sans grille qui utilisent .main-content, ne pas décaler */
+.main-content {
+  padding: 20px;
+  min-height: 100vh;
+}
+

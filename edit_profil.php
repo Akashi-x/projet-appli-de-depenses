@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/config/config.php');
 
-// Utiliser l'ID utilisateur fixe comme dans vos autres pages
+// Utiliser un ID utilisateur fixe pour les tests
 $userId = 5;
 
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM, EMAIL FROM utilisateur WHERE ID_UTILISATEUR = ?");
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
 <meta charset="UTF-8">
 <title>Modifier Profil</title>
-<link rel="stylesheet" href="CSS\editprofil.css">
+<link rel="stylesheet" href="CSS/editprofil.css">
 </head>
 <body>
 <div class="Profil-container">

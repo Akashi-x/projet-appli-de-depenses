@@ -1,10 +1,10 @@
 <?php
-require_once "../config/config.php";
+require_once "config/config.php";
 
 $id = $_GET['id'] ?? null;
 if ($id) {
-    $stmt = $pdo->prepare("SELECT * FROM operation WHERE ID_OPERATIONS_ = ? AND TYPE_OPERATION = 'REVENU'");
-    $stmt->execute([$id]);
+    $stmt = $mysqlClient->prepare("SELECT * FROM operation WHERE ID_OPERATIONS_ = ? AND ID_UTILISATEUR = ?");
+    $stmt->execute([$id, 5]);
     $revenu = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -14,21 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $categorie = $_POST['categorie'];
 
     $sql = "UPDATE operation SET DATE_OPERATION=?, DESCRIPTION=?, MONTANT=?, ID_CATEGORIE=? 
-            WHERE ID_OPERATIONS_=? AND TYPE_OPERATION = 'REVENU'";
-    $stmt = $pdo->prepare($sql);
+            WHERE ID_OPERATIONS_=?";
+    $stmt = $mysqlClient->prepare($sql);
     $stmt->execute([$date, $desc, $montant, $categorie, $id]);
 
     header("Location: liste_rentree.php");
     exit;
 }
-$cats = $pdo->query("SELECT * FROM CATEGORIE")->fetchAll();
+$cats = $mysqlClient->query("SELECT * FROM CATEGORIE")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Modifier Revenu</title>
-    <link rel="stylesheet" href="../CSS/style_rentre.css">
+    <link rel="stylesheet" href="CSS/style_rentre.css">
 </head>
 <body>
     <h2>Modifier un revenu</h2>

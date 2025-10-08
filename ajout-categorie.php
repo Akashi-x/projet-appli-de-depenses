@@ -1,10 +1,10 @@
 <?php
-require_once "config.php"; 
+require_once "config/config.php"; 
 
 $message = "";
 try {
     $sql = "SELECT ID_TYPE, NOM_TYPE FROM TYPE";
-    $stmt = $pdo->query($sql);
+    $stmt = $mysqlClient->query($sql);
     $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Erreur lors du chargement des types : " . $e->getMessage());
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!empty($nom) && $id_type > 0) {
         try {
             $sql = "INSERT INTO CATEGORIE (NOM_CATEGORIE, ID_TYPE) VALUES (:nom, :id_type)";
-            $stmt = $pdo->prepare($sql);
+            $stmt = $mysqlClient->prepare($sql);
             $stmt->execute([
                 ":nom" => $nom,
                 ":id_type" => $id_type
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <head>
         <meta charset="utf-8">
         <title>Ajouter une catégorie</title>
-        <link rel="stylesheet" href="../CSS/stylecategorie.css">
+        <link rel="stylesheet" href="CSS/stylecategorie.css">
     </head>
     <body>
         <div class="container">

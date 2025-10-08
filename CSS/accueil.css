@@ -80,6 +80,7 @@ body {
     "transactions transactions";
   gap: 20px;
   padding: 20px;
+  margin-left: 0 !important; /* Annule le margin-left de sidebar.css */
 }
 
 .header {

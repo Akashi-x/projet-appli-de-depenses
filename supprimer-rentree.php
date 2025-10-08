@@ -1,10 +1,10 @@
 <?php
-require_once "../config/config.php";
+require_once "config/config.php";
 
 $id = $_GET['id'] ?? null;
 if ($id) {
-    $stmt = $pdo->prepare("DELETE FROM operation WHERE ID_OPERATIONS_ = ? AND TYPE_OPERATION = 'REVENU'");
-    $stmt->execute([$id]);
+    $stmt = $mysqlClient->prepare("DELETE FROM operation WHERE ID_OPERATIONS_ = ? AND ID_UTILISATEUR = ?");
+    $stmt->execute([$id, 5]);
 }
 header("Location: liste_rentree.php");
 exit;

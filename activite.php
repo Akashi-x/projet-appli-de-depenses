@@ -42,6 +42,8 @@ foreach ($operations as $index => $op) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="CSS/accueil.css">
   <link rel="stylesheet" href="CSS/activite.css">
+  <link rel="stylesheet" href="CSS/dropdown.css">
+  <link rel="stylesheet" href="CSS/sidebar.css">
   <title>Activité - Suivi Dépenses</title>
 </head>
 <body>
@@ -53,20 +55,30 @@ foreach ($operations as $index => $op) {
       </div>
       <ul>
         <li><a href="accueil.php" style="color: white; text-decoration: none; display: block; width: 100%; height: 100%;"><i class="fa-solid fa-house"></i> Accueil</a></li>
-        <li><i class="fa-solid fa-wallet"></i> Revenus</li>
+        <li><a href="liste_rentree.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
         <li><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
         <li class="active"><i class="fa-solid fa-chart-pie"></i>  Activité</li>
       </ul>
+      <div class="sidebar-footer">
+        <a href="deconnexion.php" class="logout-sidebar">
+          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+        </a>
+      </div>
     </aside>
 
     <main class="main activite">
       <header class="header">
         <h1>Activité</h1> 
         <div class="user-profile">
-          <a href="profil.php" class="profile-btn"><i class="fa-solid fa-user"></i></a>
-          <div class="D">
-            <h4><?php echo $user['PRENOM']; ?></h4>
-            <p>Utilisateur</p>
+          <a href="profil.php" class="profile-btn">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <div class="user-dropdown">
+            <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
+            <div class="dropdown-menu" id="userDropdown">
+              <a href="profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
+              <a href="deconnexion.php"><i class="fa-solid fa-sign-out-alt"></i> Déconnexion</a>
+            </div>
           </div>
         </div>
       </header>
@@ -195,6 +207,24 @@ foreach ($operations as $index => $op) {
       },
       plugins: [centerText]
     });
+
+    // Fonction pour le menu déroulant
+    function toggleDropdown() {
+      const dropdown = document.getElementById('userDropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    // Fermer le menu si on clique ailleurs
+    window.onclick = function(event) {
+      if (!event.target.matches('.user-info') && !event.target.closest('.user-dropdown')) {
+        const dropdown = document.getElementById('userDropdown');
+        if (dropdown.classList.contains('show')) {
+          dropdown.classList.remove('show');
+        }
+      }
+    }
   </script>
+
+  <script src="JS/dropdown.js"></script>
 </body>
 </html>
