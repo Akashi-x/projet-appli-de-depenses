@@ -91,4 +91,5 @@ th {
   padding: 20px;
   background: #1B103E;
   overflow-y: auto;
+  margin-left: 0 !important;
 }

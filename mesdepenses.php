@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/config/config.php";
 
-// Utiliser l'ID utilisateur fixe comme dans vos autres pages
+// Utiliser un ID utilisateur fixe pour les tests
 $userId = 5;
 
 // Récupérer les informations de l'utilisateur
@@ -43,7 +43,8 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <title>Liste des Dépenses</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 <link rel="stylesheet" href="CSS/depenses.css">
-  <link rel="stylesheet" href="CSS/accueil.css">
+<link rel="stylesheet" href="CSS/accueil.css">
+<link rel="stylesheet" href="CSS/sidebar.css">
 
 </head>
 <body>
@@ -56,10 +57,15 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </div>
       <ul>
         <li> <a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
-        <li><a href="" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
+        <li><a href="liste_rentree.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
         <li class="active"><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
         <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
       </ul>
+      <div class="sidebar-footer">
+        <a href="deconnexion.php" class="logout-sidebar">
+          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+        </a>
+      </div>
     </aside>
   <!-- Main Content -->
   <main class="main-content">
@@ -67,7 +73,7 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Bouton Ajouter centré -->
     <div class="btn-container">
-        <a href="" class="btn-ajouter">+ Ajouter</a>
+        <a href="page-ajout.php" class="btn-ajouter">+ Ajouter</a>
     </div>
 
     <!-- Onglets -->
@@ -135,5 +141,6 @@ function showTab(id) {
     document.getElementById(id).style.display = 'block';
 }
 </script>
+
 </body>
 </html>

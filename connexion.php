@@ -1,5 +1,12 @@
 <?php
-    require_once __DIR__ . '/config/config.php';
+session_start();
+require_once __DIR__ . '/config/config.php';
+
+// Si déjà connecté, rediriger vers l'accueil
+if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
+    header("Location: accueil.php");
+    exit();
+}
 
 $message = "";
 
@@ -13,6 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
         $user = $stmt->fetch();
 
         if ($user && password_verify($pass, $user['MOT_DE_PASSE'])) {
+            // Créer les sessions
+            $_SESSION['id'] = $user['ID_UTILISATEUR'];
+            $_SESSION['nom'] = $user['PRENOM'];
+            $_SESSION['email'] = $user['EMAIL'];
+            
             header("Location: accueil.php");
             exit;
         } else {
@@ -55,14 +67,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
         <input type="password" name="MOT_DE_PASSE" placeholder="Entrez votre mot de passe" required> <br> <br>
         </div>
         <div class="conf">
-        <input type="submit" value="S'inscrire">
+        <input type="submit" value="Se connecter">
         <input type="reset" value="Annuler">
         </div>
         <p>Vous n'avez pas de compte?  <a href="inscription.php">Créer un compte</a></p>
        
        
        <?php echo $message; ?>
-         
+            
         
     </form>
     </div>  

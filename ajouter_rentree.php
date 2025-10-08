@@ -1,5 +1,5 @@
 <?php
-require_once "../config/config.php";
+require_once "config/config.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $date = $_POST['date'];
@@ -7,22 +7,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $montant = $_POST['montant'];
     $categorie = $_POST['categorie'];
 
-    $sql = "INSERT INTO operation (DATE_OPERATION, DESCRIPTION, MONTANT, ID_CATEGORIE, TYPE_OPERATION) 
-            VALUES (?, ?, ?, ?, 'REVENU')";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$date, $desc, $montant, $categorie]);
+    $sql = "INSERT INTO operation (ID_UTILISATEUR, DATE_OPERATION, DESCRIPTION, MONTANT, ID_CATEGORIE) 
+            VALUES (?, ?, ?, ?, ?)";
+    $stmt = $mysqlClient->prepare($sql);
+    $stmt->execute([5, $date, $desc, $montant, $categorie]);
 
     header("Location: liste_rentree.php");
     exit;
 }
-$cats = $pdo->query("SELECT * FROM CATEGORIE")->fetchAll();
+$cats = $mysqlClient->query("SELECT * FROM CATEGORIE")->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Ajouter Revenu</title>
-    <link rel="stylesheet" href="../CSS/style_rentre.css">
+    <link rel="stylesheet" href="CSS/style_rentre.css">
 </head>
 <body>
     <h2>Ajouter un revenu</h2>

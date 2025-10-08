@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    
     if ($id_utilisateur && $id_categorie && $montant && $date_operation) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO OPERATION (ID_UTILISATEUR, ID_CATEGORIE, MONTANT, DATE_OPERATION, DESCRIPTION) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $mysqlClient->prepare("INSERT INTO OPERATION (ID_UTILISATEUR, ID_CATEGORIE, MONTANT, DATE_OPERATION, DESCRIPTION) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$id_utilisateur, $id_categorie, $montant, $date_operation, $description]);
             $message .= "✅ Opération ajoutée avec succès !";
         } catch (PDOException $e) {

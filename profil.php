@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ . '/config/config.php');
 
-// Utiliser l'ID utilisateur fixe comme dans vos autres pages
+// Utiliser un ID utilisateur fixe pour les tests
 $userId = 5;
 
 // Récupérer les informations de l'utilisateur

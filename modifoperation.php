@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/config/config.php";
 
-// Utiliser l'ID utilisateur fixe comme dans vos autres pages
+// Utiliser un ID utilisateur fixe pour les tests
 $userId = 5;
 
 // Vérifier qu'un ID est fourni
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Date :</label>
     <input type="date" name="date_operation"
            max="<?= date('Y-m-d') ?>"
-           value="<?= htmlspecialchars(date('y-m-d', strtotime($operation['DATE_OPERATION'] ?? ''))) ?>"
+           value="<?= htmlspecialchars(date('Y-m-d', strtotime($operation['DATE_OPERATION'] ?? ''))) ?>"
            required>
 
     <label>Description :</label>

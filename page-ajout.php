@@ -5,7 +5,7 @@ require_once __DIR__ . '/config/config.php';
 
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $id_utilisateur = 1;
+    $id_utilisateur = 5;
     $id_categorie = (int)($_POST['categorie'] ?? 0);
     $montant = (float)($_POST['montant'] ?? 0);
     $date_operation = $_POST['date'] ?? '';
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if ($id_utilisateur && $id_categorie && $montant && $date_operation) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO OPERATION (ID_UTILISATEUR, ID_CATEGORIE, MONTANT, DATE_OPERATION, DESCRIPTION) VALUES (?, ?, ?, ?, ?)");
+            $stmt = $mysqlClient->prepare("INSERT INTO OPERATION (ID_UTILISATEUR, ID_CATEGORIE, MONTANT, DATE_OPERATION, DESCRIPTION) VALUES (?, ?, ?, ?, ?)");
             $stmt->execute([$id_utilisateur, $id_categorie, $montant, $date_operation, $description]);
             $message = "✅ Opération ajoutée avec succès !";
         } catch (PDOException $e) {
@@ -44,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <div class="message"><?php echo $message; ?></div>
     <?php endif; ?>
     <form action="" method="post">
-        
-        <div>>label for="Categorie">Categorie</label>
+
+        <div><label for="categorie">Categorie</label>
         <select name="categorie" id="categorie" required>
             <option value="">Choisir</option>
             <option value="6">Alimentation</option>
