@@ -44,7 +44,7 @@ $soldeActuel = $totalRevenus - $totalDepenses;
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="titre">
-      <h2>💰 Suivi Dépenses</h2>
+      <img  src="icone/logo.png" alt="logo" class="logo">
       <p>Gérez vos finances</p>
       </div>
       <ul>

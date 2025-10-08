@@ -41,9 +41,15 @@ if (isset($_GET['code'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/inscription.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/entete.css">
     <title>Page d'inscription</title>
 </head>
 <body>
+    <div class="entete">
+    <img  src="icone/logo.png" alt="logo" class="logo">
+    <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
+    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="connexion.php">Connexion</a>
+    </div>
     <div>
         <div>
     <form action="inscription.php" method="post" id="inscription">
@@ -73,9 +79,9 @@ if (isset($_GET['code'])) {
         <input type="submit" value="S'inscrire">
         <input type="reset" value="Annuler">
         </div>
-        <p> Vous avez déja un compte?<a href="">Connecter vous</a></p>
+        <p> Vous avez déja un compte?<a href="connexion.php">Connecter vous</a></p>
        
-       <br>
+       
        <?php echo $message; ?>
          
         

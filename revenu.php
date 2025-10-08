@@ -3,7 +3,7 @@ require_once __DIR__ . '/config/config.php';
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
-    $id_utilisateur = 1;
+    $id_utilisateur = 5;
     $id_categorie = (int)($_POST['categorie'] ?? '');
     $montant = (float)($_POST['montant'] ?? 0);
     $date_operation = $_POST['date'] ?? '';
