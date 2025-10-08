@@ -1,0 +1,127 @@
+body { 
+      background:#1C1430; 
+      color:white; 
+      font-family:Arial; 
+      padding:20px; 
+    }
+    /* Conteneur principal pour centrer le contenu */
+
+    .container { 
+      max-width:1000px; 
+      margin:auto; 
+      background:#2A1F45; 
+      padding:20px; 
+      border-radius:8px; 
+    }
+    form { 
+      background:#1B103E; 
+      padding:20px; 
+      border-radius:8px; 
+      width:300px; 
+      margin:auto; 
+    }
+    input, select { 
+      display: flex;            /* force le bloc */
+      width:100%;                 /* pleine largeur */
+      margin:5px 0; 
+      padding:8px; 
+      border-radius:5px; 
+      border:none; 
+      background-color:#2A1F45; 
+      color:white; 
+      box-sizing:border-box;      /* important pour ne pas déborder */
+    }
+    option { 
+      color:white; 
+      background:#2A1F45; 
+    }
+    .btn-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.btn {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    
+    
+}
+button{
+    flex: 1;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: rgb(116, 48, 180);
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+   
+    
+}
+button:hover {
+    background: linear-gradient(to right, #a64bf4, #8a2be2);
+}
+    label { 
+      font-weight:bold; 
+    }
+    a { 
+      text-decoration:none; 
+    }
+    /* Boutons alignés aux extrémités */
+    
+h2{
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+}
+table {
+    /* Ceci force le tableau à prendre 100% de la largeur du .container (1000px max) */
+    width: 100%; 
+    border-collapse: separate; 
+    border-spacing: 0 5px;
+    text-align: left;
+}
+/* Conteneur des actions dans la dernière colonne du tableau */
+tbody td:last-child {
+    display: flex; /* Active Flexbox */
+    gap: 10px; /* Ajoute un espacement de 10px entre les boutons */
+    justify-content: flex-start; /* Aligne les boutons au début de la cellule */
+}
+th, td {
+    padding: 12px 15px;
+}
+
+
+.controls-bar {
+    /* Force l'empilement vertical (en colonne) */
+    display: flex;
+    flex-direction: column; 
+    
+    /* Centre le bloc du bouton et le bloc des onglets */
+    align-items: center; 
+    
+    margin-bottom: 20px;
+}
+
+.add-button-wrapper {
+    /* Espace entre le bouton "+ Ajouter" et le bloc des onglets */
+    margin-bottom: 20px; 
+}
+
+table { margin: 20px auto; border-collapse: collapse; width: 80%; background: #2a0047; border-radius: 10px; overflow: hidden; }
+        th, td { padding: 12px; border-bottom: 1px solid #3d0066; }
+        th { background: #3d0066; }
+        button { padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; margin: 2px; }
+        a button { text-decoration: none; }
+        .add-btn { background: #6a0dad; color: white; margin-bottom: 15px; }
+        .edit-btn { background: rgb(116, 48, 180); color: white; }
+        .delete-btn { background: rgb(116, 48, 180); color: white; }
+
+        

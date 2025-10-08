@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  background-color: #1C1430;
+  height: 100vh;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  background-color: #1B103E;
+  padding: 3rem;
+  border-radius: 12px;
+  color: rgb(255, 255, 255);
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+   height: 415px;
+   margin:auto; 
+   width: 30.5% ;
+   margin-top: 5%;
+   font-size: large;
+
+}
+.form_mdp{
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  padding: 0.5rem;
+  border-radius: 12px;
+  height: 250px;
+  margin-top: 15%;
+  width:30% ;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+
+}
+.sub_mdp{
+display: flex;
+margin-top: 12%;
+width: 70%;
+}
+.inp_mdp{
+  border-radius: 8px;
+  width: 85%;
+  height: 10%;
+}
+
+
+.form_conf{
+  display: flex;
+  align-items: center;
+  justify-content: center ;
+  padding: 1px;
+  border-radius: 12px;
+  height: 250px;
+  margin-top: 15%;
+  width:30% ;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.mdp_conf{
+  display: flex;
+  justify-content: center ;
+  flex-direction: column;
+  width: 80%;
+}
+.sub_conf{
+  display: flex;
+  margin-top: 5%;
+  margin:auto;
+  width: 80%;
+}
+.ct{
+   font-size:30px ;
+  color: white;
+  position: absolute;
+  top: 26%;
+  right: 33%;
+}
+.st{
+  font-size:30px ;
+  color: white;
+  position: absolute;
+  top: 26%;
+  right: 35%;
+}
+h3{
+  text-align: center;
+
+}
+hr{
+  margin: 10px ;
+}
+input{
+  margin-bottom: 5px;
+  padding: 5px;
+}
+input[type="submit"],input[type="reset"]  {
+  background-color: rgb(116, 48, 180);
+  color: white;
+  border-radius: 3px;
+  padding: 8px;
+  flex: 1;
+  font-size: large;
+}
+.conf{
+  display: flex;
+  gap: 5px;
+}
+
+p{
+  text-align: center;
+  font-size: 16px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background-color: #2A1F45;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 13px;
+  width: 100%;
+
+}
+
+.mdp{
+  color: rgb(116, 48, 180);
+  font-size: 40px;
+  position: absolute;
+  top: 50%;
+  left: 30%;
+}
+

@@ -1,0 +1,98 @@
+body {
+     background-color: #1C1430;  
+    font-family: Arial, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    padding:30px;
+    border-radius:8px;
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+     padding: 30px;
+     
+}
+/* Titre*/
+.container h2{
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+    padding-bottom: 15px;
+}
+/* formilaire */
+form{
+    display: flex;
+    flex-direction: column;
+    background-color: #0f042a;
+    padding: 5px;
+    color: white;
+    border-radius: 6px;
+    
+}
+/* label*/
+label{
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+/* input et select */
+input[type="text"],
+input[type="number"],
+select {
+    box-sizing: border-box;
+    padding: 12px;
+    margin-top: 8px;
+    border:none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #2A1F45;
+    color: #6d6872;
+
+}
+p{
+     font-size: 16px;
+     font-weight: 400; 
+     margin-top: 8px;
+}
+/* button */
+.btn-container {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+.btn {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    
+    
+}
+button{
+    flex: 1;
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: rgb(116, 48, 180);
+    border: none;
+    color: white;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+   
+    
+}
+button:hover {
+    background: linear-gradient(to right, #a64bf4, #8a2be2);
+}
