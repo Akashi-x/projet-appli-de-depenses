@@ -67,7 +67,7 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Bouton Ajouter centré -->
     <div class="btn-container">
-        <a href="" class="btn-ajouter">+ Ajouter</a>
+        <a href="page-ajout.php" class="btn-ajouter">+ Ajouter</a>
     </div>
 
     <!-- Onglets -->
@@ -118,7 +118,7 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td><?= htmlspecialchars($d['DESCRIPTION'] ?? '') ?></td>
                 <td class="montant">-<?= htmlspecialchars($d['MONTANT'] ?? '') ?> CFA</td>
                 <td>
-                    <a href="edit_operation.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn btn-modifier">Modifier</a>
+                    <a href="mofifoperation.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn btn-modifier">Modifier</a>
                     <a href="delete_operation.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn btn-supprimer">Supprimer</a>
                 </td>
             </tr>
