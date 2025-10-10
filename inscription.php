@@ -53,7 +53,7 @@ if (isset($_GET['code'])) {
 </head>
 <body>
     <div class="entete">
-    <img  src="icone/logo.png" alt="logo" class="logo">
+    <a href="connexion.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
     <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
     <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="connexion.php">Connexion</a>
     </div>

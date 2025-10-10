@@ -13,9 +13,12 @@ $stmt = $mysqlClient->prepare(
      FROM operation o 
      INNER JOIN categorie c ON o.ID_CATEGORIE = c.ID_CATEGORIE 
      INNER JOIN type t ON c.ID_TYPE = t.ID_TYPE 
+     WHERE o.ID_UTILISATEUR = ? 
+     AND MONTH(o.DATE_OPERATION) = MONTH(CURRENT_DATE()) 
+     AND YEAR(o.DATE_OPERATION) = YEAR(CURRENT_DATE())
      ORDER BY o.MONTANT DESC"
 );
-$stmt->execute();
+$stmt->execute([$userId]);
 $operations = $stmt->fetchAll();
 
 $total = 0;
@@ -48,16 +51,17 @@ foreach ($operations as $index => $op) {
 </head>
 <body>
   <div class="container">
+     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="titre">
-      <h2>💰 Suivi Dépenses</h2>
+      <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
       <p>Gérez vos finances</p>
       </div>
       <ul>
-        <li><a href="accueil.php" style="color: white; text-decoration: none; display: block; width: 100%; height: 100%;"><i class="fa-solid fa-house"></i> Accueil</a></li>
-        <li><a href="liste_rentree.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
-        <li><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
-        <li class="active"><i class="fa-solid fa-chart-pie"></i>  Activité</li>
+        <li ><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
+        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
+        <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
+        <li class="active"><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
       </ul>
       <div class="sidebar-footer">
         <a href="deconnexion.php" class="logout-sidebar">
@@ -65,6 +69,7 @@ foreach ($operations as $index => $op) {
         </a>
       </div>
     </aside>
+
 
     <main class="main activite">
       <header class="header">
@@ -76,8 +81,7 @@ foreach ($operations as $index => $op) {
           <div class="user-dropdown">
             <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
             <div class="dropdown-menu" id="userDropdown">
-              <a href="profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
-              <a href="deconnexion.php"><i class="fa-solid fa-sign-out-alt"></i> Déconnexion</a>
+              <a href="edit_profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
             </div>
           </div>
         </div>

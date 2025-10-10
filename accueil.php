@@ -46,13 +46,13 @@ $soldeActuel = $totalRevenus - $totalDepenses;
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="titre">
-      <img  src="icone/logo.png" alt="logo" class="logo">
+      <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
       <p>Gérez vos finances</p>
       </div>
       <ul>
         <li class="active"><i class="fa-solid fa-house"></i> Accueil</li>
-        <li><a href="liste_rentree.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
-        <li><a href="mesdepenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
+        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
+        <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
         <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
       </ul>
       <div class="sidebar-footer">
@@ -72,8 +72,7 @@ $soldeActuel = $totalRevenus - $totalDepenses;
           <div class="user-dropdown">
             <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
             <div class="dropdown-menu" id="userDropdown">
-              <a href="profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
-              <a href="deconnexion.php"><i class="fa-solid fa-sign-out-alt"></i> Déconnexion</a>
+              <a href="edit_profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
             </div>
           </div>
         </div>

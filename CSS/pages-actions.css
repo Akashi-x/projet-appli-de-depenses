@@ -1,0 +1,156 @@
+/* Styles pour les pages revenus et dépenses */
+
+/* Bouton d'ajout */
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.btn-ajouter {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #742CB4 0%, #9B59B6 100%);
+  color: white;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(116, 44, 180, 0.3);
+}
+
+.btn-ajouter:hover {
+  background: linear-gradient(135deg, #8B3CC4 0%, #AB69C6 100%);
+  box-shadow: 0 6px 20px rgba(116, 44, 180, 0.4);
+  transform: translateY(-2px);
+  color: white;
+}
+
+/* Section des filtres */
+.filters-section {
+  background: #1b103e;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(116, 48, 180, 0.2);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* Onglets */
+.tabs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: #bbb;
+  border: 2px solid #4b2c82;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.tab-btn:hover {
+  background: rgba(116, 44, 180, 0.2);
+  color: white;
+  border-color: #742CB4;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #742CB4 0%, #9B59B6 100%);
+  color: white;
+  border-color: #742CB4;
+  box-shadow: 0 4px 15px rgba(116, 44, 180, 0.3);
+}
+
+/* Boutons d'action dans les tableaux */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  margin: 0 2px;
+}
+
+.btn-modifier {
+  background: rgba(52, 152, 219, 0.2);
+  color: #3498db;
+  border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.btn-modifier:hover {
+  background: rgba(52, 152, 219, 0.3);
+  color: #5dade2;
+}
+
+.btn-supprimer {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.btn-supprimer:hover {
+  background: rgba(231, 76, 60, 0.3);
+  color: #ec7063;
+}
+
+/* Icônes d'action dans les tableaux */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  margin: 0 4px;
+}
+
+.btn-icon.btn-modifier:hover {
+  background: rgba(52, 152, 219, 0.3);
+  color: #5dade2;
+  transform: scale(1.1);
+}
+
+.btn-icon.btn-supprimer:hover {
+  background: rgba(231, 76, 60, 0.3);
+  color: #ec7063;
+  transform: scale(1.1);
+}
+
+/* Section des actions */
+.actions-section {
+  background: #1b103e;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(116, 48, 180, 0.2);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+/* Ajustements pour la grille de la page d'accueil */
+.main {
+  grid-template-areas:
+    "header header"
+    "introduction introduction"
+    "actions-section actions-section"
+    "filters-section filters-section"
+    "transactions transactions";
+}

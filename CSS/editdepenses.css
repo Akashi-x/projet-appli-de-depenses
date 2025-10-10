@@ -11,17 +11,23 @@ body {
       width:300px; 
       margin:auto; 
     }
-    input, select, button { 
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea,
+    button { 
       display:block;              /* force le bloc */
       width:100%;                 /* pleine largeur */
       margin:5px 0; 
-      padding:8px; 
-      border-radius:5px; 
+      padding:13px; 
+      border-radius:8px; 
       border:none; 
       background-color:#2A1F45; 
       color:white; 
       box-sizing:border-box;      /* important pour ne pas déborder */
     }
+    textarea { resize: vertical; min-height: 44px; }
     option { 
       color:white; 
       background:#2A1F45; 
@@ -31,7 +37,8 @@ body {
       cursor:pointer; 
     }
     button:hover { 
-      opacity:0.9; 
+      background: #5a0a9d;
+      transition: all 0.2s ease;
     }
     label { 
       font-weight:bold; 
