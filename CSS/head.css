@@ -1,0 +1,51 @@
+.main-content {
+  display: flex;
+    flex-direction: column;
+}
+.head{
+  background: #1b103e;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(116, 48, 180, 0.2);
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 300px;
+  width: 1195px;
+  
+}
+.head h1{
+    color: #742CB4;
+}
+
+.head .user {
+  font-size: 14px;
+  color: #bbb;
+}
+.profil {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.btn-p {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #742CB4 0%, #9B59B6 100%);
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(116, 44, 180, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-p:hover {  
+  box-shadow: 0 6px 20px rgba(116, 44, 180, 0.4);
+  background: linear-gradient(135deg, #8B3CC4 0%, #AB69C6 100%);
+}

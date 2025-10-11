@@ -1,6 +1,11 @@
 <?php
 require_once "config/config.php"; 
 
+$userId = 5; // À remplacer par la session
+$stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
+$stmt->execute([$userId]);
+$user = $stmt->fetch(); 
+
 $message = "";
 try {
     $sql = "SELECT ID_TYPE, NOM_TYPE FROM TYPE";
@@ -45,27 +50,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <link rel="stylesheet" href="CSS/inscription.css">
         <link rel="stylesheet" href="CSS/stylecategorie.css">
         <link rel="stylesheet" href="CSS/sidebar.css">
+         <link rel="stylesheet" href="CSS/head.css">
+    <link rel="stylesheet" href="CSS/dropdown.css">
+    <script src="JS/dropdown.js" defer></script>
     </head>
     <body>
+        <div class="main-content">
+     <header class="head"><h1>Ajout de catégorie</h1> 
+        <div class="profil">
+          <a href="profil.php" class="btn-p">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <div class="user-dropdown">
+            <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
+            <div class="dropdown-menu" id="userDropdown">
+              <a href="edit_profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
+            </div>
+          </div>
+        </div>
+    </header>
         <form method="POST" action="" id="ajout-categorie">
-              <!-- Sidebar -->
-    <aside class="sidebar">
-        <div  class="titre">
-      <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;" ></a>
-      <p style="font-size: large;">Gérez vos finances</p>
-      </div>
-      <ul>
-        <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
-        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
-        <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
-        <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
-      </ul>
-      <div class="sidebar-footer">
-        <a href="deconnexion.php" class="logout-sidebar">
-          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
-        </a>
-      </div>
-    </aside>
+              
             <h3>AJOUTER UNE CATÉGORIE</h3>
             <hr>
             <div class="in">
@@ -89,7 +94,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="button" value="Retour" onclick="window.location.href='accueil.php'">
             </div>
             <?php if (!empty($message)) echo $message; ?>
-
+<!-- Sidebar -->
+    <aside class="sidebar">
+        <div  class="titre">
+      <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;" ></a>
+      <p style="font-size: large;">Gérez vos finances</p>
+      </div>
+      <ul>
+        <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
+        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
+        <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
+        <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="deconnexion.php" class="logout-sidebar">
+          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+        </a>
+      </div>
+    </aside>
         </form>
+        </div>
     </body>
 </html>

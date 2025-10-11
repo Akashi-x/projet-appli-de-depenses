@@ -20,9 +20,39 @@ $user = $stmt->fetch();
     <link rel="stylesheet" href="CSS/inscription.css">
     <link rel="stylesheet" href="CSS/profil.css">
     <link rel="stylesheet" href="CSS/sidebar.css">
+     <link rel="stylesheet" href="CSS/head.css">
+    <link rel="stylesheet" href="CSS/dropdown.css">
+    <script src="JS/dropdown.js" defer></script>
 </head>
 <body>
-<!-- Sidebar -->
+<div class="main-content">
+     <header class="head"><h1>Mon PROFIL</h1> 
+        <div class="profil">
+          <a href="profil.php" class="btn-p">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <div class="user-dropdown">
+            <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
+            <div class="dropdown-menu" id="userDropdown">
+              <a href="edit_profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
+            </div>
+          </div>
+        </div>
+    </header>
+    <div class="Profil">
+        <h2>Mon PROFIL</h2>
+        <div class="profil-image">
+    <img id="preview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Photo de profil" class="profile-icon" onclick="document.getElementById('photo').click();"><br><br>
+    </div>
+    <p><strong>Nom :</strong> <?= htmlspecialchars($user['NOM_UTILISATEUR']) ?></p>
+    <p><strong>Prénom :</strong> <?= htmlspecialchars($user['PRENOM']) ?></p>
+    <p><strong>Email :</strong> <?= htmlspecialchars($user['EMAIL']) ?></p>
+    <a href="edit_profil.php">
+        <button type="submit">Modifier</button>
+    </a>
+    <br>
+</div>
+    <!-- Sidebar -->
     <aside class="sidebar">
         <div  class="titre">
       <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;" ></a>
@@ -40,19 +70,6 @@ $user = $stmt->fetch();
         </a>
       </div>
     </aside>
-    <div class="Profil">
-        <h2>Mon PROFIL</h2>
-        <div class="profil-image">
-    <img id="preview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Photo de profil" class="profile-icon" onclick="document.getElementById('photo').click();"><br><br>
     </div>
-    <p><strong>Nom :</strong> <?= htmlspecialchars($user['NOM_UTILISATEUR']) ?></p>
-    <p><strong>Prénom :</strong> <?= htmlspecialchars($user['PRENOM']) ?></p>
-    <p><strong>Email :</strong> <?= htmlspecialchars($user['EMAIL']) ?></p>
-    <a href="edit_profil.php">
-        <button type="submit">Modifier</button>
-    </a>
-    <br>
-</div>
-    
 </body>
 </html>

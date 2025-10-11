@@ -1,0 +1,130 @@
+/* Styles pour la page d'ajout d'opération unifiée */
+
+body {
+    background-color: #1c1430;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: white;
+    font-family: Arial;
+    padding: 20px;
+}
+
+/* Styles pour le formulaire d'ajout d'opération */
+form {
+    background: #1B103E;
+    padding: 20px;
+    border-radius: 8px;
+    width: 420px;
+    margin: auto;
+    height: 645px;
+    margin-left: 650px;
+}
+
+input, select {
+    display: flex;
+    width: 100%;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background-color: #2A1F45;
+    color: white;
+    box-sizing: border-box;
+}
+
+option {
+    color: white;
+    background: #2A1F45;
+}
+
+/* Style spécial pour le champ type d'opération */
+#type_operation {
+    background: linear-gradient(135deg, #6a0dad, #8a2be2);
+    font-weight: bold;
+    text-align: center;
+}
+
+#type_operation option {
+    background: #2A1F45;
+    color: white;
+    font-weight: normal;
+}
+
+
+/* Style pour le champ description */
+.desc {
+    height: 80px;
+    resize: none;
+    background-color: #2A1F45;
+    border: 2px solid #4a2c7a;
+}
+
+label {
+    font-weight: bold;
+    color: #e0e0e0;
+    margin-bottom: 5px;
+    display: block;
+}
+
+h3 {
+    text-align: center;
+    color: white;
+    margin-top: 25px;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background:white;
+    margin: 15px 0 25px 0;
+}
+
+/* Styles pour les boutons de confirmation */
+.conf {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+input[type="submit"], input[type="button"] {
+    background-color: rgb(116, 48, 180);
+    color: white;
+    border-radius: 5px;
+    padding: 12px 20px;
+    flex: 1;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+input[type="submit"]:hover {
+    background: linear-gradient(135deg, #5a0a9d, #7a1bb8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+input[type="button"]:hover {
+    background: linear-gradient(135deg, #5a0a9d, #7a1bb8);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Style pour les messages d'erreur/succès */
+.message {
+    color: #ff6b6b;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    background: rgba(255, 107, 107, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #ff6b6b;
+}
+

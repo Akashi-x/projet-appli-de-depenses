@@ -49,13 +49,14 @@ body{
 
 .Profil {
   width: 420px;
-  margin: 5% auto;
+  margin-top: 2%;
   padding: 2rem;
   background-color: #1B103E;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
   margin-left: 650px;
+  
 
 }
 
