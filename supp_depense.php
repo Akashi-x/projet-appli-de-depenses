@@ -5,6 +5,6 @@ if (!empty($_GET['id'])) {
     $stmt = $mysqlClient->prepare("DELETE FROM operation WHERE ID_OPERATIONS_ = ? AND ID_UTILISATEUR = ?");
     $stmt->execute([$id, 5]);
 }
-header("Location: mesdepenses.php");
+header("Location: depenses.php");
 exit;
 ?>

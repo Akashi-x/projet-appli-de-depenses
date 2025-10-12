@@ -6,5 +6,5 @@ if ($id) {
     $stmt = $mysqlClient->prepare("DELETE FROM operation WHERE ID_OPERATIONS_ = ? AND ID_UTILISATEUR = ?");
     $stmt->execute([$id, 5]);
 }
-header("Location: liste_rentree.php");
+header("Location: revenus.php");
 exit;

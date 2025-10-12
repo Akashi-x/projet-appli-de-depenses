@@ -1,57 +1,69 @@
- body { 
-      background: #1C1430; 
-      color: white; 
-      font-family: Arial, sans-serif; 
-      padding: 20px; 
-    }
-    .Profil-container {
-      max-width: 400px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-    }
-    form { 
-      background: #1B103E; 
-      padding: 20px; 
-      border-radius: 8px; 
-    }
-    .champ { 
-      display: block;
-      width: 100%;
-      margin: 5px 0 15px 0; 
-      padding: 8px; 
-      border-radius: 5px; 
-      border: none; 
-      background-color: #2A1F45; 
-      color: white; 
-      box-sizing: border-box; 
-      font-family: Arial, sans-serif;
-      font-size: 14px;
-    }
-    label { 
-      font-weight: bold; 
-      display: block;
-      margin-top: 10px;
-    }
-    button { 
-      background: rgb(116,48,180); 
-      cursor: pointer; 
-      color: white;
-      border: none;
-      border-radius: 5px;
-      padding: 8px;
-      font-size: 14px;
-    }
-    button:hover { 
-      opacity: 0.9; 
-    }
-    /* Boutons alignés aux extrémités */
-    .but {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
-    .but button {
-      width: 48%;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
+  background-color: #1C1430;
+  height: 90vh;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  background-color: #1B103E;
+  padding: 3rem;
+  border-radius: 12px;
+  color: rgb(255, 255, 255);
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+   height: 550px;
+   margin:auto; 
+   width: 30.5% ;
+    margin-top: 5%;
+   font-size: large;
+
+}
+h3{
+  text-align: center;
+
+}
+hr{
+  margin: 10px ;
+}
+
+input[type="submit"],input[type="reset"]  {
+  background-color: rgb(116, 48, 180);
+  color: white;
+  border-radius: 3px;
+  padding: 8px;
+  flex: 1;
+  font-size: large;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+  background-color: #5a0a9d;
+}
+.conf{
+  display: flex;
+  gap: 5px;
+  margin-top: 25px;
+}
+
+p{
+  text-align: center;
+  font-size: 16px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background-color: #2A1F45;
+  border: none;
+  color: white;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+font-size: 15px;
+}

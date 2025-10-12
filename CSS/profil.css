@@ -1,20 +1,63 @@
-body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+body{
   background-color: #1C1430;
-  font-family: Arial, sans-serif;
+  height: 90vh;
   color: white;
+}
+
+/* Bouton de retour */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background-color: #1B103E;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(116, 48, 180, 0.3);
+}
+
+.back-link:hover {
+  background-color: rgb(116, 48, 180);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(116, 48, 180, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+.back-link i {
+  font-size: 16px;
 }
 
 
 .Profil {
-  width: 350px;
-  margin: 5% auto;
+  width: 420px;
+  margin-top: 2%;
   padding: 2rem;
   background-color: #1B103E;
   border-radius: 12px;
   text-align: center;
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  margin-left: 650px;
+  
+
 }
 
 .Profil h2 {

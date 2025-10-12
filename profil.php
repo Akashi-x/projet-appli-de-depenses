@@ -15,9 +15,30 @@ $user = $stmt->fetch();
 <head>
     <meta charset="UTF-8">
     <title>Profil utilisateur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/inscription.css">
     <link rel="stylesheet" href="CSS/profil.css">
+    <link rel="stylesheet" href="CSS/sidebar.css">
+     <link rel="stylesheet" href="CSS/head.css">
+    <link rel="stylesheet" href="CSS/dropdown.css">
+    <script src="JS/dropdown.js" defer></script>
 </head>
 <body>
+<div class="main-content">
+     <header class="head"><h1>Mon PROFIL</h1> 
+        <div class="profil">
+          <a href="profil.php" class="btn-p">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <div class="user-dropdown">
+            <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
+            <div class="dropdown-menu" id="userDropdown">
+              <a href="edit_profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
+            </div>
+          </div>
+        </div>
+    </header>
     <div class="Profil">
         <h2>Mon PROFIL</h2>
         <div class="profil-image">
@@ -31,6 +52,24 @@ $user = $stmt->fetch();
     </a>
     <br>
 </div>
-    
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div  class="titre">
+      <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;" ></a>
+      <p style="font-size: large;">Gérez vos finances</p>
+      </div>
+      <ul>
+        <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
+        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
+        <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
+        <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="deconnexion.php" class="logout-sidebar">
+          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+        </a>
+      </div>
+    </aside>
+    </div>
 </body>
 </html>

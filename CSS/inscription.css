@@ -103,6 +103,12 @@ input[type="submit"],input[type="reset"]  {
   padding: 8px;
   flex: 1;
   font-size: large;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+  background-color: #5a0a9d;
 }
 .conf{
   display: flex;

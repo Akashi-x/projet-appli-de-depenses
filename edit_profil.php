@@ -11,7 +11,6 @@ $user = $stmt->fetch();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = trim($_POST['NOM_UTILISATEUR']);
     $prenom = trim($_POST['PRENOM']);
-    $newEmail = trim($_POST['EMAIL']);
 
     // Vérification des mots de passe
     if (!empty($_POST['password'])) {
@@ -23,9 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$hashed, $userId]);
     }
 
-    // Mise à jour infos de base
-    $stmt = $mysqlClient->prepare("UPDATE utilisateur SET NOM_UTILISATEUR = ?, PRENOM = ?, EMAIL = ? WHERE ID_UTILISATEUR = ?");
-    $stmt->execute([$nom, $prenom, $newEmail, $userId]);
+    // Mise à jour infos de base (email non modifiable)
+    $stmt = $mysqlClient->prepare("UPDATE utilisateur SET NOM_UTILISATEUR = ?, PRENOM = ? WHERE ID_UTILISATEUR = ?");
+    $stmt->execute([$nom, $prenom, $userId]);
 
     header("Location: profil.php");
     exit;
@@ -35,33 +34,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Modifier Profil</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="CSS/editprofil.css">
+
 </head>
 <body>
-<div class="Profil-container">
-    <h2>Modifier mon PROFIL</h2>
-    <form method="post">
+<form method="post" id="modifier-profil">
+    <h3>MODIFIER MON PROFIL</h3>
+    <hr>
+
+    <div>
         <label>Prénom</label>
-        <input type="text" class="champ" name="PRENOM" value="<?= htmlspecialchars($user['PRENOM']) ?>" required>
+        <input type="text" name="PRENOM" value="<?= htmlspecialchars($user['PRENOM']) ?>" required>
+    </div>
 
+    <div>
         <label>Nom</label>
-        <input type="text" class="champ" name="NOM_UTILISATEUR" value="<?= htmlspecialchars($user['NOM_UTILISATEUR']) ?>" required>
+        <input type="text" name="NOM_UTILISATEUR" value="<?= htmlspecialchars($user['NOM_UTILISATEUR']) ?>" required>
+    </div>
 
+    <div>
         <label>Email</label>
-        <input type="email" class="champ" name="EMAIL" value="<?= htmlspecialchars($user['EMAIL']) ?>" required>
+        <input type="email" value="<?= htmlspecialchars($user['EMAIL']) ?>" disabled>
+    </div>
 
+    <div>
         <label>Nouveau mot de passe</label>
-        <input type="password" class="champ" name="password">
+        <input type="password" name="password">
+    </div>
 
+    <div>
         <label>Confirmer mot de passe</label>
-        <input type="password" class="champ" name="password_confirm">
+        <input type="password" name="password_confirm">
+    </div>
 
-        <div class="but">
-            <button type="submit">Enregistrer</button>
-            <button type="button" onclick="window.location.href='mesdepenses.php'">Annuler</button>
-        </div>
-    </form>
-</div>
+    <div class="conf">
+        <input type="submit" value="Enregistrer">
+        <input type="reset" value="Annuler" onclick="window.location.href='profil.php'">
+    </div>
+</form>
 </body>
 </html>

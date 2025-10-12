@@ -8,53 +8,45 @@ body {
     height: 100vh;
     margin: 0;
 }
-.container {
-    padding:30px;
-    border-radius:8px;
-    max-width: 400px;
-    width: 100%;
-    margin: auto;
-     padding: 30px;
-     
-}
-/* Titre*/
-.container h2{
-    text-align: center;
-    color: white;
-    margin-bottom: 25px;
-    font-size: 22px;
-    font-weight: bold;
-    border-bottom: 2px solid white;
-    padding-bottom: 15px;
-}
+
 /* formilaire */
+
 form{
-    display: flex;
-    flex-direction: column;
-    background-color: #0f042a;
-    padding: 5px;
-    color: white;
-    border-radius: 6px;
-    
+  display: flex;
+  flex-direction: column;
+  background-color: #1B103E;
+  padding: 3rem;
+  border-radius: 12px;
+  color: rgb(255, 255, 255);
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+   height: 415px;
+   margin:auto; 
+   width: 30.5% ;
+   margin-top: 4%;
+   font-size: large;
+   margin-right: 27%;
+
 }
+
 /* label*/
 label{
     display: block;
-    margin-top: 15px;
-    font-weight: bold;
+    margin-top: 15px;       
 }
 /* input et select */
 input[type="text"],
 input[type="number"],
 select {
-    box-sizing: border-box;
-    padding: 12px;
-    margin-top: 8px;
-    border:none;
+      display: flex;
+    width: 100%;
+    margin: 2px 0;
+    padding: 8px;
     border-radius: 5px;
-    font-size: 16px;
+    border: none;
     background-color: #2A1F45;
-    color: #6d6872;
+    color: white;
+    box-sizing: border-box;
+    font-size: 16px;
 
 }
 p{
@@ -62,37 +54,21 @@ p{
      font-weight: 400; 
      margin-top: 8px;
 }
-/* button */
-.btn-container {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-.btn {
-    flex: 1;
-    padding: 16px;
-    border: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    
-    
-}
-button{
-    flex: 1;
-    width: 100%;
-    padding: 15px;
-    margin-top: 20px;
-    background: rgb(116, 48, 180);
-    border: none;
-    color: white;
-    font-size: 15px;
-    border-radius: 4px;
-    cursor: pointer;
-   
-    
-}
+
 button:hover {
     background: linear-gradient(to right, #a64bf4, #8a2be2);
+}
+input[type="submit"],input[type="button"]  {
+  background-color: rgb(116, 48, 180);
+  color: white;
+  border-radius: 3px;
+  padding: 8px;
+  flex: 1;
+  font-size: large;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover, input[type="button"]:hover {
+  background-color: #5a0a9d;
 }

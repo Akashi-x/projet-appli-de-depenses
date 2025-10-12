@@ -1,5 +1,49 @@
 /* Sidebar Footer */
 .sidebar {
+  grid-area: sidebar;
+  background: #1b103e;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+  border: 1px solid rgba(116, 48, 180, 0.2);
+}
+
+
+.titre {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 1px solid #4b2c82;
+  margin-bottom: 30px;
+}
+.titre h2 {
+  margin-top: 10px;
+  font-size: 24px;
+  color: #742CB4;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 18px;
+  margin-bottom: 20px;
+  margin-left: px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.sidebar ul li i {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+  background: #4b2c82;
+}
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
@@ -7,6 +51,7 @@
   overflow-y: auto;
   z-index: 1000;
   width: 280px;
+  font-size: large;
 }
 
 .sidebar-footer {
