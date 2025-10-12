@@ -92,6 +92,7 @@ $soldeActuel = $totalRevenus - $totalDepenses;
 
       <section class="stats1">Total revenus du mois<br><span><?php echo ($revenus['total'] ?? 0) > 0 ? '+' : ''; ?><?php echo number_format(($revenus['total'] ?? 0), 0, ',', ' '); ?> FCFA</span></section>
       <section class="stats2">Total dépenses du mois<br><span><?php echo ($depenses['total'] ?? 0) > 0 ? '-' : ''; ?><?php echo number_format(($depenses['total'] ?? 0), 0, ',', ' '); ?> FCFA</span></section>
+      
 
       <section class="transactions">
         <h2>Dernières transactions</h2>
