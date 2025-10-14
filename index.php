@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
         $user = $stmt->fetch();
 
         if ($user && password_verify($pass, $user['MOT_DE_PASSE'])) {
+            // Sécuriser la session après authentification
+            session_regenerate_id(true);
             // Créer les sessions
             $_SESSION['id'] = $user['ID_UTILISATEUR'];
             $_SESSION['nom'] = $user['PRENOM'];
@@ -53,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
     </div>
     <div>
         <div>
-    <form action="connexion.php" method="post" id="connexion">
+    <form action="index.php" method="post" id="connexion">
       
         <h3>CONNEXION</h3> <hr>
       

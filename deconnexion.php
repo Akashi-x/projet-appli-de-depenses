@@ -16,7 +16,12 @@ if (ini_get("session.use_cookies")) {
 // Détruire la session
 session_destroy();
 
+// Empêcher l'utilisation du cache pour revenir en arrière
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 // Rediriger vers la page de connexion
-header("Location: connexion.php");
+header("Location: index.php");
 exit();
 ?>

@@ -1,7 +1,8 @@
 <?php
+require_once 'check_session.php';
 require_once 'config/config.php';
 
-$userId = 5;
+$userId = $_SESSION['id'];
 
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
 $stmt->execute([$userId]);
