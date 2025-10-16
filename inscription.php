@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once _DIR_ . '/config/config.php';
+require_once __DIR__ . '/config/config.php';
+
 
 // Si déjà connecté, rediriger vers l'accueil
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
