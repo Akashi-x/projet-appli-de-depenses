@@ -1,8 +1,13 @@
 <?php
+require_once __DIR__ . '/check_session.php';
 require_once __DIR__ . '/config/config.php';
 
 $message = "";
-$userId = 5; // À remplacer par la session
+$userId = $_SESSION['id'];
+$stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
+$stmt->execute([$userId]);
+$user = $stmt->fetch(); 
+
 
 // Récupérer toutes les catégories (revenus et dépenses)
 $catsStmt = $mysqlClient->prepare("SELECT C.*, T.NOM_TYPE FROM categorie C JOIN type T ON T.ID_TYPE = C.ID_TYPE ORDER BY T.NOM_TYPE, C.NOM_CATEGORIE ASC");
@@ -67,27 +72,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="CSS/inscription.css">
     <link rel="stylesheet" href="CSS/operation.css">
     <link rel="stylesheet" href="CSS/sidebar.css">
+    <link rel="stylesheet" href="CSS/head.css">
+    <link rel="stylesheet" href="CSS/dropdown.css">
+    <script src="JS/dropdown.js" defer></script>
 </head>
 <body>
+    <div class="main-content">
+     <header class="head" style="margin-top: 80px;"><h1>Ajout d'operation</h1> 
+        <div class="profil">
+          <a href="profil.php" class="btn-p">
+            <i class="fa-solid fa-user"></i>
+          </a>
+          <div class="user-dropdown">
+            <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
+            <div class="dropdown-menu" id="userDropdown">
+              <a href="edit_profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
+            </div>
+          </div>
+        </div>
+    </header>
     <form id="ajout-operation" method="post" action="">
-      <!-- Sidebar -->
-    <aside class="sidebar">
-        <div  class="titre">
-      <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;" ></a>
-      <p style="font-size: large;">Gérez vos finances</p>
-      </div>
-      <ul>
-        <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
-        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
-        <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
-        <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
-      </ul>
-      <div class="sidebar-footer">
-        <a href="deconnexion.php" class="logout-sidebar">
-          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
-        </a>
-      </div>
-    </aside>
+      
         
         <h3>AJOUTER UNE OPÉRATION</h3>
         <hr>
@@ -131,6 +136,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php if ($message): ?>
             <p><?php echo $message; ?></p>
         <?php endif; ?>
+        </div>
+        <!-- Sidebar -->
+    <aside class="sidebar">
+        <div  class="titre">
+      <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;" ></a>
+      <p style="font-size: large;">Gérez vos finances</p>
+      </div>
+      <ul>
+        <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
+        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
+        <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
+        <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <a href="deconnexion.php" class="logout-sidebar">
+          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+        </a>
+      </div>
+    </aside>
     </form>
 
     <script>

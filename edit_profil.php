@@ -1,8 +1,9 @@
 <?php
+require_once(__DIR__ . '/check_session.php');
 require_once(__DIR__ . '/config/config.php');
 
-// Utiliser un ID utilisateur fixe pour les tests
-$userId = 5;
+// Utiliser l'ID en session
+$userId = $_SESSION['id'];
 
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM, EMAIL FROM utilisateur WHERE ID_UTILISATEUR = ?");
 $stmt->execute([$userId]);

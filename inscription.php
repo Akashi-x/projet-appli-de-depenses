@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . '/config/config.php';
+require_once _DIR_ . '/config/config.php';
 
 // Si déjà connecté, rediriger vers l'accueil
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
@@ -16,6 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom_utilisateur = htmlspecialchars($_POST["NOM_UTILISATEUR"]);
     $email = htmlspecialchars($_POST["EMAIL"]);
     $mot_de_passe = $_POST["MOT_DE_PASSE"];
+
+    // Validation longueur minimale du mot de passe
+    if (strlen($mot_de_passe) < 8) {
+        header("location: inscription.php?code=3");
+        exit();
+    }
 
     $hash = password_hash($mot_de_passe, PASSWORD_ARGON2ID);
 
@@ -37,6 +43,8 @@ if (isset($_GET['code'])) {
         $message = '<p style="color: red; font-size: 18px;">❌ Cet e-mail a déjà été utilisé.</p>';
     } else if ($code == '2') {
         $message = '<p style="color: green; font-size: 18px;">✅ Inscription réussie !</p>';
+    } else if ($code == '3') {
+        $message = '<p style="color: red; font-size: 18px;">❌ Le mot de passe doit contenir au moins 8 caractères.</p>';
     }
 }
 ?>
@@ -53,9 +61,9 @@ if (isset($_GET['code'])) {
 </head>
 <body>
     <div class="entete">
-    <a href="connexion.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
+    <a href="index.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
     <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
-    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="connexion.php">Connexion</a>
+    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>
     </div>
     <div>
         <div>
@@ -80,13 +88,13 @@ if (isset($_GET['code'])) {
          
         <div>
             <label>Mot de passe</label>
-        <input type="password" name="MOT_DE_PASSE" placeholder="Entrez votre mot de passe" required> <br> <br>
+        <input type="password" name="MOT_DE_PASSE" placeholder="Entrez votre mot de passe" required minlength="8"> <br> <br>
         </div>
         <div class="conf">
         <input type="submit" value="S'inscrire">
         <input type="reset" value="Annuler">
         </div>
-        <p> Vous avez déja un compte?<a href="connexion.php">Connecter vous</a></p>
+        <p> Vous avez déja un compte?<a href="index.php">Connectez-vous</a></p>
        
        
        <?php echo $message; ?>
@@ -96,4 +104,4 @@ if (isset($_GET['code'])) {
     </div>  
 
 </body>
-</html>  
+</html>

@@ -1,8 +1,9 @@
 <?php
+require_once __DIR__ . '/check_session.php';
 require_once __DIR__ . '/config/config.php';
 
 $message = '';
-$userId = 5; // À remplacer par l'ID de session lorsque disponible
+$userId = $_SESSION['id'];
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
 $stmt->execute([$userId]);
 $user = $stmt->fetch(); 

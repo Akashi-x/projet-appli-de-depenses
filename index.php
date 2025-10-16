@@ -20,6 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
         $user = $stmt->fetch();
 
         if ($user && password_verify($pass, $user['MOT_DE_PASSE'])) {
+            // Sécuriser la session après authentification
+            session_regenerate_id(true);
             // Créer les sessions
             $_SESSION['id'] = $user['ID_UTILISATEUR'];
             $_SESSION['nom'] = $user['PRENOM'];
@@ -47,13 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
 </head>
 <body>
     <div class="entete">
-    <a href="connexion.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
+    <a href="index.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
     <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
-    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="connexion.php">Connexion</a>
+    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>
     </div>
     <div>
         <div>
-    <form action="connexion.php" method="post" id="connexion">
+    <form action="index.php" method="post" id="connexion">
       
         <h3>CONNEXION</h3> <hr>
       

@@ -1,7 +1,8 @@
 <?php
+require_once 'check_session.php';
 require_once 'config/config.php';
 
-$userId = 5;
+$userId = $_SESSION['id'];
 
 
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
@@ -92,6 +93,7 @@ $soldeActuel = $totalRevenus - $totalDepenses;
 
       <section class="stats1">Total revenus du mois<br><span><?php echo ($revenus['total'] ?? 0) > 0 ? '+' : ''; ?><?php echo number_format(($revenus['total'] ?? 0), 0, ',', ' '); ?> FCFA</span></section>
       <section class="stats2">Total dépenses du mois<br><span><?php echo ($depenses['total'] ?? 0) > 0 ? '-' : ''; ?><?php echo number_format(($depenses['total'] ?? 0), 0, ',', ' '); ?> FCFA</span></section>
+      
 
       <section class="transactions">
         <h2>Dernières transactions</h2>
@@ -127,5 +129,10 @@ $soldeActuel = $totalRevenus - $totalDepenses;
   </div>
 
   <script src="JS/dropdown.js"></script>
+  <a href="ajout_operation.php" title="Ajouter une opération" aria-label="Ajouter une opération"
+     style="position:fixed;right:24px;bottom:24px;background-color:#1B103E;color:#fff;height:56px;padding:0 16px;border-radius:9999px;display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,0.25);z-index:1000;">
+    <i class="fa-solid fa-plus" style="font-size:20px;"></i>
+    <span style="font-weight:600;">Nouvelle opération</span>
+  </a>
 </body>
 </html>
