@@ -17,7 +17,7 @@ require_once __DIR__ . "/config/config.php";
   </div>
     <div class="container">
         <p>
-            L'application <strong>Gestion des Dépenses</strong> a été créée pour aider les utilisateurs 
+            L'application <strong>SUNU KALPE</strong> a été créée pour aider les utilisateurs 
             à suivre leurs revenus, dépenses et opérations financières de manière simple, claire et efficace.
         </p>
 
@@ -43,7 +43,7 @@ require_once __DIR__ . "/config/config.php";
       <h3>BENJAMIN IBA NDIAYE</h3>
     </div>
     <div class="member">
-      <img src=".jpg" alt="Membre 4">
+      <img src="DEV.jpg" alt="Membre 4">
       <h3>DAOUDA SARR</h3>
     </div>
   </div>

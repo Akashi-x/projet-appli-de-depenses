@@ -1,12 +1,14 @@
 <?php
 require_once 'config/env.php';
+
 try {
     $mysqlClient = new PDO(
-        "mysql:host=localhost;port=3307;dbname=gestion_depenses;charset=utf8",
-        "root",
-        ""
+        "mysql:host=$DB_HOST;port=$DB_PORT;dbname=$DB_NAME;charset=utf8",
+        $DB_USER,
+        $DB_PASS
     );
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
+    $mysqlClient->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
 }
-?>
