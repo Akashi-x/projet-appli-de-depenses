@@ -72,9 +72,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
         <input type="submit" value="Se connecter">
         <input type="reset" value="Annuler">
         </div>
-        <p>Vous n'avez pas de compte?  <a href="inscription.php">Créer un compte</a></p>
-       
-       
+        <div class="ins">
+        <p>Vous n'avez pas de compte?  <a style=" text-decoration: none;" href="inscription.php">Créer un compte</a> <br>ou <br>
+        <a style=" text-decoration: none;" href="traitement_mdp_oubli.php">Réinitialiser votre mot de passe</a></p>
+</div>
+
        <?php echo $message; ?>
             
         

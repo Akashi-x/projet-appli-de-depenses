@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once _DIR_ . '/config/config.php';
+require_once __DIR__ . '/config/config.php';
 
 // Si déjà connecté, rediriger vers l'accueil
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
@@ -94,7 +94,7 @@ if (isset($_GET['code'])) {
         <input type="submit" value="S'inscrire">
         <input type="reset" value="Annuler">
         </div>
-        <p> Vous avez déja un compte?<a href="index.php">Connectez-vous</a></p>
+        <p> Vous avez déja un compte?<a style="text-decoration: none; " href="index.php">Connectez-vous</a></p>
        
        
        <?php echo $message; ?>

@@ -138,4 +138,7 @@ input[type="password"] {
   top: 50%;
   left: 30%;
 }
+ .ins a :active {
+  color: rgb(3, 110, 203);
+}
 

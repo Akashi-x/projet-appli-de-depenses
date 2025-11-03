@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if ($stmt->rowCount() > 0) {
                     $success = "Mot de passe modifié avec succès !";
+                    
                 } else {
                     $error = "Aucune modification effectuée. Vérifiez que l'utilisateur existe.";
                 }
