@@ -1,6 +1,8 @@
 <?php
-$_host = 'localhost';
-$_database = 'gestion_depenses';
-$_user = 'root';
-$_password = '';
-?> 
+// Configuration de la base de données
+$DB_HOST = "localhost";
+$DB_PORT = 3307;
+$DB_NAME = "gestion_depenses";
+$DB_USER = "root";
+$DB_PASS = "";
+?>
