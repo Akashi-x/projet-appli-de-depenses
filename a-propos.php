@@ -9,15 +9,23 @@ require_once __DIR__ . "/config/config.php";
   <meta charset="UTF-8">
   <title>À propos</title>
     <link rel="stylesheet" href="CSS/apropos.css">
+    <link rel="stylesheet" href="CSS/entete.css">
       
 </head>
 <body>
+   <div class="entete">
+    <a href="index.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a> 
+
+  
+    <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
+    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>
+    </div>
   <div class="equipee">
   <h1>A propos de notre application</h1>
   </div>
     <div class="container">
         <p>
-            L'application <strong>SUNU KALPE</strong> a été créée pour aider les utilisateurs 
+            L'application <strong>SAMA KALPE</strong> a été créée pour aider les utilisateurs 
             à suivre leurs revenus, dépenses et opérations financières de manière simple, claire et efficace.
         </p>
 

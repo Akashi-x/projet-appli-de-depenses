@@ -79,7 +79,7 @@ try {
   <aside class="sidebar">
         <div class="titre">
       <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
-      <p>Gérez vos finances</p>
+      <h1>SAMA KALPE</h1>
       </div>
       <ul>
         <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>

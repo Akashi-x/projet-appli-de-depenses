@@ -1,5 +1,8 @@
-/* Styles pour les pages revenus et dépenses */
-
+body {
+  background-color: #1C1430;
+  color: white;
+  height: 130vh;
+}
 /* Bouton d'ajout */
 .btn-container {
   display: flex;
@@ -144,15 +147,15 @@
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 20px;
-
 }
 
 /* Ajustements pour la grille de la page d'accueil */
-.main {
-  grid-template-areas:
-    "header header"
-    "introduction introduction"
-    "actions-section actions-section"
-    "filters-section filters-section"
-    "transactions transactions";
+
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  margin-top: 30px;
+  margin-left: 25px;
 }

@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/check_session.php';
-require_once "config/config.php"; 
+require_once __DIR__ . '/config/config.php';
 
 $userId = $_SESSION['id'];
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
@@ -99,13 +99,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <aside class="sidebar">
         <div  class="titre">
       <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;" ></a>
-      <p style="font-size: large;">Gérez vos finances</p>
+            <h1>SAMA KALPE</h1>
+
       </div>
       <ul>
-        <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
-        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
-        <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
-        <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
+        <li><a href="gestion_categorie.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i>Gestion catégories</a></li>
+       
       </ul>
       <div class="sidebar-footer">
         <a href="deconnexion.php" class="logout-sidebar">

@@ -1,10 +1,6 @@
 <?php
 session_start();
 require_once __DIR__ . '/config/config.php';
-<<<<<<< HEAD
-=======
-
->>>>>>> a84257a0d01c146d3d3848e161ba928e3f06e9da
 
 // Si déjà connecté, rediriger vers l'accueil
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {

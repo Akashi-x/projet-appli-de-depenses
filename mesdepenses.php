@@ -53,7 +53,7 @@ $depenses = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <aside class="sidebar" style="font-size: 17px;">
         <div class="titre" style="font-weight: bold;">
       <h2>💰 Suivi Dépenses</h2>
-      <p style="font-size: 16px;padding: 6px;">Gérez vos finances</p>
+      <h1>SAMA KALPE</h1>
       </div>
       <ul>
         <li> <a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
