@@ -19,12 +19,13 @@ $revenuCategories = [];
 $depenseCategories = [];
 
 foreach ($allCategories as $cat) {
-    if ($cat['NOM_TYPE'] === 'Revenu') {
+    if (strtolower($cat['NOM_TYPE']) === 'revenu') {
         $revenuCategories[] = $cat;
     } else {
         $depenseCategories[] = $cat;
     }
 }
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id_utilisateur = $userId;
