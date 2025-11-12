@@ -16,22 +16,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom_utilisateur = htmlspecialchars($_POST["NOM_UTILISATEUR"]);
     $email = htmlspecialchars($_POST["EMAIL"]);
     $mot_de_passe = $_POST["MOT_DE_PASSE"];
+    $confirmation = $_POST["CONFIRM_MOT_DE_PASSE"] ?? '';
 
-    // Validation longueur minimale du mot de passe
     if (strlen($mot_de_passe) < 8) {
         header("location: inscription.php?code=3");
         exit();
     }
 
+    if ($mot_de_passe !== $confirmation) {
+        header("location: inscription.php?code=4");
+        exit();
+    }
+
     $hash = password_hash($mot_de_passe, PASSWORD_ARGON2ID);
 
-    $check = $mysqlClient->query("SELECT EMAIL FROM UTILISATEUR WHERE EMAIL = '$email'");
+    $check = $mysqlClient->prepare("SELECT EMAIL FROM UTILISATEUR WHERE EMAIL = ?");
+    $check->execute([$email]);
     if ($check->rowCount() > 0) {
         header("location: inscription.php?code=1");
        
     } else {
-        $sql = "INSERT INTO UTILISATEUR (PRENOM, NOM_UTILISATEUR, EMAIL, MOT_DE_PASSE) VALUES ('$prenom', '$nom_utilisateur', '$email', '$hash')";
-        $mysqlClient->exec($sql);
+        $sql = "INSERT INTO UTILISATEUR (PRENOM, NOM_UTILISATEUR, EMAIL, MOT_DE_PASSE) VALUES (?, ?, ?, ?)";
+        $stmtInsert = $mysqlClient->prepare($sql);
+        $stmtInsert->execute([$prenom, $nom_utilisateur, $email, $hash]);
         header("location: inscription.php?code=2");
         exit();
     }
@@ -45,6 +52,8 @@ if (isset($_GET['code'])) {
         $message = '<p style="color: green; font-size: 18px;">✅ Inscription réussie !</p>';
     } else if ($code == '3') {
         $message = '<p style="color: red; font-size: 18px;">❌ Le mot de passe doit contenir au moins 8 caractères.</p>';
+    } else if ($code == '4') {
+        $message = '<p style="color: red; font-size: 18px;">❌ Les mots de passe ne correspondent pas.</p>';
     }
 }
 ?>
@@ -62,6 +71,7 @@ if (isset($_GET['code'])) {
 <body>
     <div class="entete">
     <a href="index.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
+    <h1 class="site-title">SAMA KALPE</h1>
     <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
     <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>
     </div>
@@ -88,7 +98,11 @@ if (isset($_GET['code'])) {
          
         <div>
             <label>Mot de passe</label>
-        <input type="password" name="MOT_DE_PASSE" placeholder="Entrez votre mot de passe" required minlength="8"> <br> <br>
+        <input type="password" name="MOT_DE_PASSE" placeholder="Entrez votre mot de passe" required minlength="8"> <br>
+        </div>
+        <div>
+            <label>Confirmer le mot de passe</label>
+        <input type="password" name="CONFIRM_MOT_DE_PASSE" placeholder="Confirmez votre mot de passe" required minlength="8"> <br> <br>
         </div>
         <div class="conf">
         <input type="submit" value="S'inscrire">

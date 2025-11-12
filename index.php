@@ -5,7 +5,7 @@ require_once __DIR__ . '/config/config.php';
 // Si déjà connecté
 if (isset($_SESSION['id']) && !empty($_SESSION['id'])) {
     if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
-        header("Location: admin/ajout_categorie.php");
+        header("Location: gestion_categorie.php");
     } else {
         header("Location: accueil.php");
     }
@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
     $pass = htmlspecialchars($_POST['MOT_DE_PASSE']);
 
     if ($email !== "" && $pass !== "") {
-        // ✅ Jointure pour récupérer aussi le NOM_ROLE
         $stmt = $mysqlClient->prepare("
             SELECT u.*, r.NOM_ROLE 
             FROM utilisateur u
@@ -37,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
             $_SESSION['email'] = $user['EMAIL'];
             $_SESSION['role'] = $user['NOM_ROLE']; // ✅ bon champ
 
-            // ✅ Redirection selon le rôle
+
             if ($user['NOM_ROLE'] === 'admin') {
                 header("Location: ajout_categorie.php");
             } else {
@@ -66,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
         <body>
             <div class="entete">
             <a href="index.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
+            <h1 class="site-title">SAMA KALPE</h1>
             
             <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
             <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>

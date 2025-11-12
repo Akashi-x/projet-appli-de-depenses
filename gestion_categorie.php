@@ -13,6 +13,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 // Récupérer toutes les catégories avec leur type
 $sql = "
     SELECT 
+        c.ID_CATEGORIE,
         c.NOM_CATEGORIE,
         t.NOM_TYPE
     FROM categorie c
@@ -95,6 +96,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tr>
               <th>Catégorie</th>
               <th>Type</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -114,11 +116,16 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <tr>
       <td><?= htmlspecialchars($d['NOM_CATEGORIE'] ?? 'Non défini') ?></td>
       <td style="<?= $couleur ?>"><?= htmlspecialchars($type) ?></td>
+      <td>
+        <a href="supp_categorie.php?id=<?= (int)($d['ID_CATEGORIE'] ?? 0) ?>" class="btn-icon btn-supprimer" title="Supprimer" onclick="return confirm('Supprimer cette catégorie ?')">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </td>
     </tr>
   <?php endforeach; ?>
 <?php else: ?>
   <tr>
-    <td colspan="2" style="text-align: center; color: #bbb;">Aucune catégorie trouvée.</td>
+    <td colspan="3" style="text-align: center; color: #bbb;">Aucune catégorie trouvée.</td>
   </tr>
 <?php endif; ?>
 

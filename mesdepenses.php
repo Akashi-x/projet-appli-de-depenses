@@ -1,8 +1,8 @@
 <?php
+require_once __DIR__ . '/check_session.php';
 require_once __DIR__ . "/config/config.php";
 
-// Utiliser un ID utilisateur fixe pour les tests
-$userId = 5;
+$userId = $_SESSION['id'];
 
 // Récupérer les informations de l'utilisateur
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
