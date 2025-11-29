@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            
             $code = sprintf("%06d", mt_rand(0, 999999));
             
-            $updateStmt = $mysqlClient->prepare("UPDATE UTILISATEUR SET CODE = ?, FLAG_REINITIALISATION = 1 WHERE EMAIL = ?");
+            $updateStmt = $mysqlClient->prepare("UPDATE utilisateur SET CODE = ?, FLAG_REINITIALISATION = 1 WHERE EMAIL = ?");
             $updateResult = $updateStmt->execute([$code, $email]);
             
             if (!$updateResult) {

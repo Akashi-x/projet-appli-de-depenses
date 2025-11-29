@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $error = "Code incorrect. Veuillez vérifier le code reçu par email.";
                 } else {
     
-                    $updateStmt = $mysqlClient->prepare("UPDATE UTILISATEUR SET FLAG_REINITIALISATION = 0, CODE = 0 WHERE EMAIL = ?");
+                    $updateStmt = $mysqlClient->prepare("UPDATE utilisateur SET FLAG_REINITIALISATION = 0, CODE = 0 WHERE EMAIL = ?");
                     $updateStmt->execute([$email]);
                     header("Location: traitement_modif_mdp.php?email=" . urlencode($email));
                     exit;
