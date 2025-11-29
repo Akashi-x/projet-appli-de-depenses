@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $error = "Utilisateur non trouvé ou procédure de récupération non terminée. Veuillez refaire la procédure.";
             } else {
 
-                $sql = "UPDATE UTILISATEUR SET MOT_DE_PASSE = ? WHERE EMAIL = ?";
+                $sql = "UPDATE utilisateur SET MOT_DE_PASSE = ? WHERE EMAIL = ?";
                 $stmt = $mysqlClient->prepare($sql);
                 $stmt->execute([$mot_de_passe_hash, $email]);
                 
