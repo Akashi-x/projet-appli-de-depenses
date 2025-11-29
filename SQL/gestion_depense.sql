@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 12 nov. 2025 à 18:50
+-- Généré le : sam. 29 nov. 2025 à 13:09
 -- Version du serveur : 9.1.0
 -- Version de PHP : 8.3.14
 
@@ -34,16 +34,18 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `NOM_CATEGORIE` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID_CATEGORIE`),
   KEY `ID_TYPE` (`ID_TYPE`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `categorie`
 --
 
 INSERT INTO `categorie` (`ID_CATEGORIE`, `ID_TYPE`, `NOM_CATEGORIE`) VALUES
+(6, 1, 'Bourse'),
 (4, 2, 'Loyer'),
 (3, 1, 'Divers'),
-(5, 2, 'Alimentation ');
+(5, 2, 'Alimentation '),
+(8, 2, 'Divers');
 
 -- --------------------------------------------------------
 
@@ -62,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `operation` (
   PRIMARY KEY (`ID_OPERATIONS_`),
   KEY `FK_OPERATIO_APPARTENI_CATEGORI` (`ID_CATEGORIE`),
   KEY `FK_OPERATIO_EFFECTUER_UTILISAT` (`ID_UTILISATEUR`)
-) ENGINE=MyISAM AUTO_INCREMENT=1238 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1240 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `operation`
@@ -80,9 +82,11 @@ INSERT INTO `operation` (`ID_OPERATIONS_`, `ID_UTILISATEUR`, `ID_CATEGORIE`, `MO
 (1228, 5, 1, 100000, '2025-09-11', 'vente de sac de riz'),
 (1233, 5, 1, 30000, '2025-11-02', 'vente de sac de riz'),
 (1234, 5, 3, 111, '2025-10-28', '111'),
-(1235, 5, 5, 1111, '2025-11-11', 'kool'),
-(1236, 5, 3, 215212, '2025-11-11', '1222'),
-(1237, 5, 2, 10000, '2025-11-11', 'transport pou bea');
+(1235, 5, 5, 11110, '2025-11-11', 'on a fait des course'),
+(1236, 5, 3, 215212, '2025-11-11', 'Argent de poche'),
+(1237, 5, 2, 10000, '2025-11-11', 'transport pou bea'),
+(1238, 5, 6, 40000, '2025-11-12', 'paiment ecobank'),
+(1239, 5, 5, 2500, '2025-11-12', 'Maiga');
 
 -- --------------------------------------------------------
 
@@ -123,8 +127,8 @@ CREATE TABLE IF NOT EXISTS `type` (
 --
 
 INSERT INTO `type` (`ID_TYPE`, `NOM_TYPE`) VALUES
-(1, 'revenu'),
-(2, 'depense');
+(1, 'Revenu'),
+(2, 'Depense');
 
 -- --------------------------------------------------------
 
@@ -141,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `EMAIL` varchar(255) DEFAULT NULL,
   `MOT_DE_PASSE` varchar(255) DEFAULT NULL,
   `CODE` int DEFAULT NULL,
-  `FLAG_RENITIALISATION` tinyint DEFAULT NULL,
+  `FLAG_REINITIALISATION` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`ID_UTILISATEUR`),
   KEY `ID_ROLE` (`ID_ROLE`)
 ) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -150,8 +154,8 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID_UTILISATEUR`, `ID_ROLE`, `NOM_UTILISATEUR`, `PRENOM`, `EMAIL`, `MOT_DE_PASSE`, `CODE`, `FLAG_RENITIALISATION`) VALUES
-(5, 1, 'Akashi', 'daouda', 'sarrdavid20@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$dEVPQ0M5cGlPVjBjL0UwMQ$cZpHBCZxJdS+zTlCRMPKQU8QsNyO9Ui731zFH6Q5Zk8', NULL, NULL),
+INSERT INTO `utilisateur` (`ID_UTILISATEUR`, `ID_ROLE`, `NOM_UTILISATEUR`, `PRENOM`, `EMAIL`, `MOT_DE_PASSE`, `CODE`, `FLAG_REINITIALISATION`) VALUES
+(5, 1, 'Akashi', 'daouda', 'sarrdavid20@gmail.com', '$argon2id$v=19$m=65536,t=4,p=1$dEVPQ0M5cGlPVjBjL0UwMQ$cZpHBCZxJdS+zTlCRMPKQU8QsNyO9Ui731zFH6Q5Zk8', 0, 0),
 (55, 2, 'Tatsumi', 'daouda', 'test20@gmail.com', '$argon2id$v=19$m=...SYTRoOE05OQ$ZIQxNPMNlQ+4Ket2AmojjTr7gV3OX86HvnmW+sR1qFI', 0, 0),
 (56, 2, 'sarr', 'daouda', 'sarrrdavid@yahoo.com', '$argon2id$v=19$m...1V3VIMTBpVQ$q8w1OZ800DSDbwdK7uyWjW8GZdnAo/5afflPX9ImYzo', 0, 0),
 (57, 2, 'fdv', 'daouda', 'sarrrdavid2@yahoo.com', '$argon2id$v=19$m...QTkxBNlBFUA$cup1KLRCU4qIpy8EVQEB5slWfYlNklX9K3fK5qAHsW4', 0, 0),

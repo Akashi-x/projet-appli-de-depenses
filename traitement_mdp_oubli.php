@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Veuillez saisir une adresse email valide.";
     } else {
-        $stmt = $mysqlClient->prepare("SELECT ID_UTILISATEUR, CODE, FLAG_REINITIALISATION FROM UTILISATEUR WHERE EMAIL = ?");
+        $stmt = $mysqlClient->prepare("SELECT ID_UTILISATEUR, CODE, FLAG_REINITIALISATION FROM utilisateur WHERE EMAIL = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         

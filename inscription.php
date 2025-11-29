@@ -30,13 +30,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $hash = password_hash($mot_de_passe, PASSWORD_ARGON2ID);
 
-    $check = $mysqlClient->prepare("SELECT EMAIL FROM UTILISATEUR WHERE EMAIL = ?");
+    $check = $mysqlClient->prepare("SELECT EMAIL FROM utilisateur WHERE EMAIL = ?");
     $check->execute([$email]);
     if ($check->rowCount() > 0) {
         header("location: inscription.php?code=1");
        
     } else {
-        $sql = "INSERT INTO UTILISATEUR (PRENOM, NOM_UTILISATEUR, EMAIL, MOT_DE_PASSE) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO UTILISATEUR (PRENOM, NOM_UTILISATEUR, EMAIL, MOT_DE_PASSE,ID_ROLE) VALUES (?, ?, ?, ?, 2)";
         $stmtInsert = $mysqlClient->prepare($sql);
         $stmtInsert->execute([$prenom, $nom_utilisateur, $email, $hash]);
         header("location: inscription.php?code=2");
