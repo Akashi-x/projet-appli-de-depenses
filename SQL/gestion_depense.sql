@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `NOM_CATEGORIE` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`ID_CATEGORIE`),
   KEY `ID_TYPE` (`ID_TYPE`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   `ID_ROLE` int NOT NULL AUTO_INCREMENT,
   `NOM_ROLE` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_ROLE`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `role`
@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `type` (
   `ID_TYPE` int NOT NULL AUTO_INCREMENT,
   `NOM_TYPE` varchar(255) NOT NULL,
   PRIMARY KEY (`ID_TYPE`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `type`
@@ -148,7 +148,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `FLAG_REINITIALISATION` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`ID_UTILISATEUR`),
   KEY `ID_ROLE` (`ID_ROLE`)
-) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `utilisateur`

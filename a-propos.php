@@ -40,19 +40,19 @@ require_once __DIR__ . "/config/config.php";
    </div>
   <div class="team">
     <div class="member">
-      <img src="BOC.jpg" alt="Membre 1">
+      <img src="IMG/BOC.jpg" alt="Membre 1">
       <h3>ABDOUL BOCOUM</h3>
     </div>
     <div class="member">
-      <img src="PA.jpg" alt="Membre 2">
+      <img src="IMG/PA.jpg" alt="Membre 2">
       <h3>PAPA SAMBA MBODJI</h3>
     </div>
     <div class="member">
-      <img src="BENJ.jpg" alt="Membre 3">
+      <img src="IMG/BENJ.jpg" alt="Membre 3">
       <h3>BENJAMIN IBA NDIAYE</h3>
     </div>
     <div class="member">
-      <img src="DEV.jpg" alt="Membre 4">
+      <img src="IMG/DEV.jpg" alt="Membre 4">
       <h3>DAOUDA SARR</h3>
       <p>Chef de projet</p>
     </div>
