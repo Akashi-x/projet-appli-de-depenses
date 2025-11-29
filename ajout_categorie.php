@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!empty($nom) && $id_type > 0) {
         try {
-            $sql = "INSERT INTO CATEGORIE (NOM_CATEGORIE, ID_TYPE) VALUES (:nom, :id_type)";
+            $sql = "INSERT INTO categorie (NOM_CATEGORIE, ID_TYPE) VALUES (:nom, :id_type)";
             $stmt = $mysqlClient->prepare($sql);
             $stmt->execute([
                 ":nom" => $nom,

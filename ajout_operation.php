@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (!$verif->fetch()) {
                 $message = "❌ Catégorie invalide pour ce type d'opération.";
             } else {
-                $stmt = $mysqlClient->prepare("INSERT INTO OPERATION (ID_UTILISATEUR, ID_CATEGORIE, MONTANT, DATE_OPERATION, DESCRIPTION) VALUES (?, ?, ?, ?, ?)");
+                $stmt = $mysqlClient->prepare("INSERT INTO operation (ID_UTILISATEUR, ID_CATEGORIE, MONTANT, DATE_OPERATION, DESCRIPTION) VALUES (?, ?, ?, ?, ?)");
                 $stmt->execute([$id_utilisateur, $id_categorie, $montant, $date_operation, $description]);
                 
                 // Redirection selon le type d'opération
