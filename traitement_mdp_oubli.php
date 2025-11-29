@@ -114,11 +114,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/inscription.css">                                
+    <link rel="stylesheet" href="CSS/inscription.css"> 
+    <link rel="stylesheet" href="CSS/entete.css">                               
     <title>Réinitialiser votre mot de passe</title>
 </head>
 <body>
-    <P><strong class="st">Réinitialiser votre mot de passe</strong></P>
+     <div class="entete">
+    <a href="index.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a> 
+    <h1 class="site-title">SAMA KALPE</h1>
+
+  
+    <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
+    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>
+    </div>
     
     <?php if (isset($error)): ?>
         <div class="error-message">
@@ -131,9 +139,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php echo htmlspecialchars($success); ?>
         </div>
     <?php endif; ?>
+   
     
-    <form class="form_mdp" method="post" action="traitement_mdp_oubli.php">
-        
+    <form style="margin-top:190px;"class="form_mdp" method="post" action="traitement_mdp_oubli.php">
+         <P><strong class="st">Réinitialiser votre mot de passe</strong></P>
          <div  class="inp_mdp">
             <label>Adresse e-mail</label>
             <input type="email" name="EMAIL" placeholder="Entrez votre e-mail" required value="<?php echo htmlspecialchars($_POST['EMAIL'] ?? ''); ?>"> 
@@ -143,6 +152,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
 
     </form>
-
+</div>
 </body>
 </html>

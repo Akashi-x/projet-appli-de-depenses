@@ -52,9 +52,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/inscription.css">
+    <link rel="stylesheet" href="CSS/entete.css">                               
+
     <title>Creation nouveau mot de passe</title>
 </head>
 <body>
+     <div class="entete">
+    <a href="index.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a> 
+    <h1 class="site-title">SAMA KALPE</h1>
+
+  
+    <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
+    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>
+    </div>
      <P><strong class="ct">Creation d'un nouveau mot de passe</strong></P>
     
     <?php if (isset($error)): ?>
@@ -68,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php echo htmlspecialchars($success); ?>
         </div>
     <?php else: ?>
-        <form class="form_conf" method="post" action="traitement_modif_mdp.php">
+        <form style="margin-top:190px;"class="form_conf" method="post" action="traitement_modif_mdp.php">
         
          <div class="mdp_conf">
             <label>Nouveau mot de passe</label>

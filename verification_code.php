@@ -41,9 +41,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/inscription.css">
+        <link rel="stylesheet" href="CSS/entete.css">                               
+
     <title>Saisir le code de réinitialisation</title>
 </head>
 <body>
+     <div class="entete">
+    <a href="index.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a> 
+    <h1 class="site-title">SAMA KALPE</h1>
+
+  
+    <a class="prop" style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="a-propos.php">À propos</a>
+    <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>
+    </div>
+
     <P><strong class="st">Saisir le code de réinitialisation</strong></P>
     
     <?php if (isset($_GET['email'])): ?>
@@ -58,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
     
-    <form class="form_mdp" method="post" action="verification_code.php">
+    <form style="margin-top:120px;" class="form_mdp" method="post" action="verification_code.php">
         
          <div  class="inp_mdp">
             <label>Code reçu par email</label>

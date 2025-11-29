@@ -27,7 +27,7 @@ $user = $stmt->fetch();
 </head>
 <body>
 <div class="main-content">
-     <header class="head"><h1>Mon PROFIL</h1> 
+     <header class="head"><h1>Mon profil</h1> 
         <div class="profil">
           <a href="profil.php" class="btn-p">
             <i class="fa-solid fa-user"></i>
