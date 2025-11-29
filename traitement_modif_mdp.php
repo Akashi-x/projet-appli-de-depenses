@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $mot_de_passe_hash = password_hash($nouveau_mot_de_passe, PASSWORD_ARGON2I);
             
-            $checkSql = "SELECT ID_UTILISATEUR FROM UTILISATEUR WHERE EMAIL = ? AND FLAG_REINITIALISATION = 0";
+            $checkSql = "SELECT ID_UTILISATEUR FROM utilisateur WHERE EMAIL = ? AND FLAG_REINITIALISATION = 0";
             $checkStmt = $mysqlClient->prepare($checkSql);
             $checkStmt->execute([$email]);
             $user = $checkStmt->fetch(PDO::FETCH_ASSOC);

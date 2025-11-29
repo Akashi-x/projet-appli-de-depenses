@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header("location: inscription.php?code=1");
        
     } else {
-        $sql = "INSERT INTO UTILISATEUR (PRENOM, NOM_UTILISATEUR, EMAIL, MOT_DE_PASSE,ID_ROLE) VALUES (?, ?, ?, ?, 2)";
+        $sql = "INSERT INTO utilisateur (PRENOM, NOM_UTILISATEUR, EMAIL, MOT_DE_PASSE,ID_ROLE) VALUES (?, ?, ?, ?, 2)";
         $stmtInsert = $mysqlClient->prepare($sql);
         $stmtInsert->execute([$prenom, $nom_utilisateur, $email, $hash]);
         header("location: inscription.php?code=2");
