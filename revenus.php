@@ -56,6 +56,7 @@ try {
     die("Erreur : " . $e->getMessage());
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -69,160 +70,166 @@ try {
     <link rel="stylesheet" href="CSS/pages-actions.css">
     <title>Mes Revenus</title>
 </head>
-<body>
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="titre">
-                <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
-      <h1>SAMA KALPE</h1>
-            </div>
-            <ul>
-                <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
-                <li class="active"><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
-                <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
-                <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
-            </ul>
-            <div class="sidebar-footer">
-                <a href="deconnexion.php" class="logout-sidebar">
-                    <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
-                </a>
-            </div>
-        </aside>
 
-        <!-- Main -->
-        <main class="main">
-            <header class="header">
-                <h1>Revenus</h1> 
-                <div class="user-profile">
-                    <a href="profil.php" class="profile-btn">
-                        <i class="fa-solid fa-user"></i>
-                    </a>
-                    <div class="user-dropdown">
-                        <span class="user-name" onclick="toggleDropdown()"><?php echo $user['NOM_UTILISATEUR']; ?></span>
-                        <div class="dropdown-menu" id="userDropdown">
-                            <a href="edit_profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
-                        </div>
+<body>
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="titre">
+            <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
+            <h1>SAMA KALPE</h1>
+        </div>
+
+        <ul>
+            <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
+            <li class="active"><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
+            <li><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
+            <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <a href="deconnexion.php" class="logout-sidebar">
+                <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+        <header class="header">
+            <h1>Revenus</h1> 
+            <div class="user-profile">
+                <a href="profil.php" class="profile-btn">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <div class="user-dropdown">
+                    <span class="user-name" onclick="toggleDropdown()">
+                        <?= htmlspecialchars($user['NOM_UTILISATEUR']) ?>
+                    </span>
+                    <div class="dropdown-menu" id="userDropdown">
+                        <a href="edit_profil.php"><i class="fa-solid fa-user-edit"></i> Modifier Profil</a>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
 
-            <section class="introduction">
-                <h1>💰 Gestion des Revenus</h1>      
-                <p>Suivez et gérez tous vos revenus en toute simplicité</p>
-            </section>
+        <section class="introduction">
+            <h1>💰 Gestion des Revenus</h1>      
+            <p>Suivez et gérez tous vos revenus en toute simplicité</p>
+        </section>
 
-            <section class="actions-section">
-                <div class="btn-container">
-                    <a href="ajout-revenu.php" class="btn-ajouter">
-                        <i class="fa-solid fa-plus"></i> Ajouter un Revenu
-                    </a>
-                </div>
-            </section>
+        <section class="actions-section">
+            <div class="btn-container">
+                <a href="ajout-revenu.php" class="btn-ajouter">
+                    <i class="fa-solid fa-plus"></i> Ajouter un Revenu
+                </a>
+            </div>
+        </section>
 
-            <section class="filters-section">
-                <div class="tabs">
-                    <button class="tab-btn <?= ($filtre === 'mois_courant') ? 'active' : '' ?>" onclick="showTab('mois_courant')">
-                        <i class="fa-solid fa-calendar-month"></i> Revenus du mois
-                    </button>
-                    <button class="tab-btn <?= ($filtre === 'tous') ? 'active' : '' ?>" onclick="showTab('tous')">
-                        <i class="fa-solid fa-list"></i> Tous les revenus
-                    </button>
-                </div>
-            </section>
+        <section class="filters-section">
+            <div class="tabs">
+                <button class="tab-btn <?= ($filtre === 'mois_courant') ? 'active' : '' ?>" onclick="showTab('mois_courant')">
+                    <i class="fa-solid fa-calendar-month"></i> Revenus du mois
+                </button>
+                <button class="tab-btn <?= ($filtre === 'tous') ? 'active' : '' ?>" onclick="showTab('tous')">
+                    <i class="fa-solid fa-list"></i> Tous les revenus
+                </button>
+            </div>
+        </section>
 
-            <section class="transactions">
-                <h2>Liste des Revenus</h2>
-                
-                <!-- Contenu Revenus du mois courant -->
-                <div id="mois_courant" class="tab-content" <?= ($filtre === 'tous') ? 'style="display:none"' : '' ?>>
-                    <table class="transaction">
-                        <thead>
-                            <tr>
-                                <th>Catégorie</th>
-                                <th>Description</th>
-                                <th>Montant</th>
-                                <th>Date</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if ($filtre === 'mois_courant' && !empty($revenus)): ?>
-                                <?php foreach ($revenus as $revenu): ?>
-                                    <tr>
-                                        <td><?= htmlspecialchars($revenu['NOM_CATEGORIE']) ?></td>
-                                        <td><?= htmlspecialchars($revenu['DESCRIPTION']) ?></td>
-                                        <td class="montant positif">+<?= number_format($revenu['MONTANT'], 0, ',', ' ') ?> FCFA</td>
-                                        <td><?= htmlspecialchars($revenu['DATE_OPERATION']) ?></td>
-                                        <td>
-                                            <a href="modif_revenu.php?id=<?= $revenu['ID_OPERATIONS_'] ?>" class="btn-icon btn-modifier" title="Modifier">
-                                                <i class="fa-solid fa-edit"></i>
-                                            </a>
-                                            <a href="supp_revenu.php?id=<?= $revenu['ID_OPERATIONS_'] ?>" class="btn-icon btn-supprimer" title="Supprimer" onclick="return confirm('Supprimer ce revenu ?')">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
+        <section class="transactions">
+            <h2>Liste des Revenus</h2>
+
+            <div id="mois_courant" class="tab-content" <?= ($filtre === 'tous') ? 'style="display:none"' : '' ?>>
+                <table class="transaction">
+                    <thead>
+                        <tr>
+                            <th>Catégorie</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Montant</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($filtre === 'mois_courant' && !empty($revenus)) : ?>
+                            <?php foreach ($revenus as $revenu) : ?>
                                 <tr>
-                                    <td colspan="5" style="text-align: center; color: #bbb;">Aucun revenu trouvé pour ce mois.</td>
+                                    <td><?= htmlspecialchars($revenu['NOM_CATEGORIE']) ?></td>
+                                    <td><?= htmlspecialchars($revenu['DESCRIPTION']) ?></td>
+                                    <td><?= htmlspecialchars($revenu['DATE_OPERATION']) ?></td>
+                                    <td class="montant positif">+<?= number_format($revenu['MONTANT'], 0, ',', ' ') ?> FCFA</td>
+                                    <td>
+                                        <a href="modif_revenu.php?id=<?= $revenu['ID_OPERATIONS_'] ?>" class="btn-icon btn-modifier">
+                                            <i class="fa-solid fa-edit"></i>
+                                        </a>
+                                        <a href="supp_revenu.php?id=<?= $revenu['ID_OPERATIONS_'] ?>" class="btn-icon btn-supprimer" onclick="return confirm('Supprimer ce revenu ?')">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
                                 </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Contenu Tous les revenus -->
-                <div id="tous" class="tab-content" <?= ($filtre === 'mois_courant') ? 'style="display:none"' : '' ?>>
-                    <table class="transaction">
-                        <thead>
+                            <?php endforeach; ?>
+                        <?php else : ?>
                             <tr>
-                                <th>Date</th>
-                                <th>Catégorie</th>
-                                <th>Description</th>
-                                <th>Montant</th>
-                                <th>Actions</th>
+                                <td colspan="5" style="text-align:center;color:#bbb;">Aucun revenu trouvé pour ce mois.</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php if ($filtre === 'tous' && !empty($revenusTous)): ?>
-                                <?php foreach ($revenusTous as $revenu): ?>
-                                    <tr>
-                                        <td><?= htmlspecialchars($revenu['DATE_OPERATION']) ?></td>
-                                        <td><?= htmlspecialchars($revenu['NOM_CATEGORIE']) ?></td>
-                                        <td><?= htmlspecialchars($revenu['DESCRIPTION']) ?></td>
-                                        <td class="montant positif">+<?= number_format($revenu['MONTANT'], 0, ',', ' ') ?> FCFA</td>
-                                        <td>
-                                            <a href="modif_revenu.php?id=<?= $revenu['ID_OPERATIONS_'] ?>" class="btn-icon btn-modifier" title="Modifier">
-                                                <i class="fa-solid fa-edit"></i>
-                                            </a>
-                                            <a href="supp_revenu.php?id=<?= $revenu['ID_OPERATIONS_'] ?>" class="btn-icon btn-supprimer" title="Supprimer" onclick="return confirm('Supprimer ce revenu ?')">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="5" style="text-align: center; color: #bbb;">Aucun revenu trouvé.</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
-    </div>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
 
-    <script src="JS/dropdown.js"></script>
-    <script>
-        function showTab(id) {
-            // Recharger la page avec le bon filtre
-            const url = new URL(window.location);
-            url.searchParams.set('filtre', id === 'mois_courant' ? 'mois_courant' : 'tous');
-            window.location.href = url.toString();
-        }
-    </script>
+            <div id="tous" class="tab-content" <?= ($filtre === 'mois_courant') ? 'style="display:none"' : '' ?>>
+                <table class="transaction">
+                    <thead>
+                        <tr>
+                            <th>Catégorie</th>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Montant</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php if ($filtre === 'tous' && !empty($revenusTous)) : ?>
+                            <?php foreach ($revenusTous as $revenu) : ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($revenu['NOM_CATEGORIE']) ?></td>
+                                    <td><?= htmlspecialchars($revenu['DESCRIPTION']) ?></td>
+                                    <td><?= htmlspecialchars($revenu['DATE_OPERATION']) ?></td>
+                                    <td class="montant positif">+<?= number_format($revenu['MONTANT'], 0, ',', ' ') ?> FCFA</td>
+                                    <td>
+                                        <a href="modif_revenu.php?id=<?= $revenu['ID_OPERATIONS_'] ?>" class="btn-icon btn-modifier">
+                                            <i class="fa-solid fa-edit"></i>
+                                        </a>
+                                        <a href="supp_revenu.php?id=<?= $revenu['ID_OPERATIONS_'] ?>" class="btn-icon btn-supprimer" onclick="return confirm('Supprimer ce revenu ?')">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else : ?>
+                            <tr>
+                                <td colspan="5" style="text-align:center;color:#bbb;">Aucun revenu trouvé.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+    </main>
+</div>
+
+<script src="JS/dropdown.js"></script>
+<script>
+function showTab(id) {
+    const url = new URL(window.location);
+    url.searchParams.set('filtre', id);
+    window.location.href = url.toString();
+}
+</script>
+
 </body>
 </html>

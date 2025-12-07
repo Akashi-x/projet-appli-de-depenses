@@ -34,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
             $_SESSION['id'] = $user['ID_UTILISATEUR'];
             $_SESSION['nom'] = $user['PRENOM'];
             $_SESSION['email'] = $user['EMAIL'];
-            $_SESSION['role'] = $user['NOM_ROLE']; // ✅ bon champ
+            $_SESSION['role'] = $user['NOM_ROLE']; 
 
 
             if ($user['NOM_ROLE'] === 'admin') {
-                header("Location: ajout_categorie.php");
+                header("Location: gestion_categorie.php");
             } else {
                 header("Location: accueil.php");
             }
@@ -71,7 +71,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['EMAIL'], $_POST['MOT_
             <a style="background-color: #1B103E; padding: 10px 12px; border-radius: 4px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);" href="index.php">Connexion</a>
             </div>
             <div>
+    
                 <div>
+                      <?php
+                if (isset($_GET['success']) && $_GET['success'] === 'mdp_modifie') {
+                 echo "<p style='color: green; font-size: 18px; text-align: center; font-weight: bold;'>
+                 Mot de passe modifié avec succès. Vous pouvez maintenant vous connecter.
+                </p>";
+                }
+                ?>
+                <?php
+                    if (isset($_GET['success']) && $_GET['success'] === 'inscription') {
+                    echo "<p style='color: green; font-size: 18px; text-align: center; font-weight: bold;'>
+                    ✅ Inscription réussie ! Vous pouvez maintenant vous connecter.
+                    </p>";
+                }
+                ?>
+
             <form action="index.php" method="post" id="connexion">
             
                 <h3>CONNEXION</h3> <hr>

@@ -9,6 +9,7 @@ $stmt->execute([$userId]);
 $user = $stmt->fetch();
 
 
+
 $stmt = $mysqlClient->prepare(
     "SELECT o.DESCRIPTION, o.MONTANT, t.NOM_TYPE, c.NOM_CATEGORIE 
      FROM operation o 
@@ -23,7 +24,37 @@ $stmt->execute([$userId]);
 $operations = $stmt->fetchAll();
 
 $total = 0;
-foreach ($operations as $operation) { $total += (float)$operation['MONTANT']; }
+foreach ($operations as $operation) { 
+    $total += (float)$operation['MONTANT']; 
+}
+
+
+$stmt = $mysqlClient->prepare(
+    "SELECT t.NOM_TYPE, SUM(o.MONTANT) AS total_montant, COUNT(*) AS total_ops
+     FROM operation o
+     INNER JOIN categorie c ON o.ID_CATEGORIE = c.ID_CATEGORIE
+     INNER JOIN type t ON c.ID_TYPE = t.ID_TYPE
+     WHERE o.ID_UTILISATEUR = ?
+     GROUP BY t.NOM_TYPE"
+);
+$stmt->execute([$userId]);
+$statsGlobales = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$revenusGlobal = 0;
+$depensesGlobal = 0;
+$nombreOperationsGlobal = 0;
+
+foreach ($statsGlobales as $stat) {
+    if ($stat['NOM_TYPE'] === 'Revenu') {
+        $revenusGlobal = (float)$stat['total_montant'];
+        $nombreOperationsGlobal += (int)$stat['total_ops'];
+    } else {
+        $depensesGlobal = (float)$stat['total_montant'];
+        $nombreOperationsGlobal += (int)$stat['total_ops'];
+    }
+}
+
+$totalOperationsGlobal = $revenusGlobal + $depensesGlobal;
 
 
 $colorPalette = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#C7C7C7', '#5366FF', '#FF63FF', '#63FF84'];
@@ -31,12 +62,14 @@ $colorPalette = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40
 $labels = [];
 $values = [];
 $backgrounds = [];
+
 foreach ($operations as $index => $op) {
   $labels[] = $op['NOM_CATEGORIE'];
   $values[] = (float)$op['MONTANT'];
   $backgrounds[] = $colorPalette[$index % count($colorPalette)];
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -94,7 +127,7 @@ foreach ($operations as $index => $op) {
       </section>
 
       <section class="graph-container">
-        <h2>Diagramme circulaire des opérations</h2>
+        <h2>Diagramme circulaire des opérations du mois en cours</h2>
         <div class="pie-chart">
           <canvas id="operationsChart" width="400" height="400"></canvas>
         </div>
@@ -134,24 +167,32 @@ foreach ($operations as $index => $op) {
             else { $depensesTotal += (float)$op['MONTANT']; }
         }
         ?>
-        <div class="stats-grid">
-          <div class="stat-item">
-            <h4>Total des opérations</h4>
-            <div class="stat-value"><?php echo number_format($total); ?> FCFA</div>
-          </div>
-          <div class="stat-item">
-            <h4>Nombre d'opérations</h4>
-            <div class="stat-value"><?php echo count($operations); ?></div>
-          </div>
-          <div class="stat-item">
-            <h4>Total revenus</h4>
-            <div class="stat-value" style="color: #55ff55;">+ <?php echo number_format($revenusTotal); ?> FCFA</div>
-          </div>
-          <div class="stat-item">
-            <h4>Total dépenses</h4>
-            <div class="stat-value" style="color: #ff5555;">- <?php echo number_format($depensesTotal); ?> FCFA</div>
-          </div>
-        </div>
+<div class="stats-grid">
+  <div class="stat-item">
+    <h4>Total des opérations</h4>
+    <div class="stat-value"><?php echo number_format($totalOperationsGlobal); ?> FCFA</div>
+  </div>
+
+  <div class="stat-item">
+    <h4>Nombre d'opérations</h4>
+    <div class="stat-value"><?php echo $nombreOperationsGlobal; ?></div>
+  </div>
+
+  <div class="stat-item">
+    <h4>Total revenus</h4>
+    <div class="stat-value" style="color: #55ff55;">
+      + <?php echo number_format($revenusGlobal); ?> FCFA
+    </div>
+  </div>
+
+  <div class="stat-item">
+    <h4>Total dépenses</h4>
+    <div class="stat-value" style="color: #ff5555;">
+      - <?php echo number_format($depensesGlobal); ?> FCFA
+    </div>
+  </div>
+</div>
+
       </section>
     </main>
   </div>
@@ -213,11 +254,6 @@ foreach ($operations as $index => $op) {
       plugins: [centerText]
     });
 
-    // Fonction pour le menu déroulant
-    function toggleDropdown() {
-      const dropdown = document.getElementById('userDropdown');
-      dropdown.classList.toggle('show');
-    }
 
     // Fermer le menu si on clique ailleurs
     window.onclick = function(event) {

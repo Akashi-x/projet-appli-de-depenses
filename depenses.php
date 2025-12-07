@@ -58,8 +58,6 @@ try {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -75,27 +73,31 @@ try {
 </head>
 <body>
 <div class="container">
+
   <!-- Sidebar -->
   <aside class="sidebar">
-        <div class="titre">
+    <div class="titre">
       <a href="accueil.php"><img src="icone/logo.png" alt="logo" class="logo" style="cursor: pointer;"></a>
       <h1>SAMA KALPE</h1>
-      </div>
-      <ul>
-        <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
-        <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
-        <li class="active"><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
-        <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
-      </ul>
-      <div class="sidebar-footer">
-        <a href="deconnexion.php" class="logout-sidebar">
-          <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
-        </a>
-      </div>
-    </aside>
+    </div>
+
+    <ul>
+      <li><a href="accueil.php" style="text-decoration: none;color:white"><i class="fa-solid fa-house"></i> Accueil</a></li>
+      <li><a href="revenus.php" style="text-decoration: none;color:white"><i class="fa-solid fa-wallet"></i> Revenus</a></li>
+      <li class="active"><a href="depenses.php" style="text-decoration: none;color:white"><i class="fa-solid fa-credit-card"></i> Dépenses</a></li>
+      <li><a href="activite.php" style="text-decoration: none;color:white"><i class="fa-solid fa-chart-pie"></i> Activité</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="deconnexion.php" class="logout-sidebar">
+        <i class="fa-solid fa-sign-out-alt"></i> Déconnexion
+      </a>
+    </div>
+  </aside>
 
   <!-- Main -->
   <main class="main">
+    
     <header class="header">
       <h1>Dépenses</h1> 
       <div class="user-profile">
@@ -138,15 +140,14 @@ try {
     <section class="transactions">
       <h2>Liste des Dépenses</h2>
       
-      <!-- Contenu Dépenses du mois courant -->
       <div id="mois_courant" class="tab-content" <?= ($filtre === 'tous') ? 'style="display:none"' : '' ?>>
         <table class="transaction">
           <thead>
             <tr>
               <th>Catégorie</th>
               <th>Description</th>
-              <th>Montant</th>
               <th>Date</th>
+              <th>Montant</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -154,16 +155,15 @@ try {
             <?php if ($filtre === 'mois_courant' && !empty($depenses)): ?>
               <?php foreach ($depenses as $d): ?>
                 <tr>
-                  
                   <td><?= htmlspecialchars($d['NOM_CATEGORIE'] ?? 'Non défini') ?></td>
                   <td><?= htmlspecialchars($d['DESCRIPTION'] ?? '') ?></td>
-                  <td class="montant negatif">-<?= number_format($d['MONTANT'] ?? 0, 0, ',', ' ') ?> FCFA</td>
                   <td><?= htmlspecialchars($d['DATE_OPERATION'] ?? '') ?></td>
+                  <td class="montant negatif">-<?= number_format($d['MONTANT'] ?? 0, 0, ',', ' ') ?> FCFA</td>
                   <td>
-                    <a href="modif_depense.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn-icon btn-modifier" title="Modifier">
+                    <a href="modif_depense.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn-icon btn-modifier">
                       <i class="fa-solid fa-edit"></i>
                     </a>
-                    <a href="supp_depense.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn-icon btn-supprimer" title="Supprimer" onclick="return confirm('Supprimer cette dépense ?')">
+                    <a href="supp_depense.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn-icon btn-supprimer" onclick="return confirm('Supprimer cette dépense ?')">
                       <i class="fa-solid fa-trash"></i>
                     </a>
                   </td>
@@ -178,14 +178,13 @@ try {
         </table>
       </div>
 
-      <!-- Contenu Toutes les dépenses -->
       <div id="tous" class="tab-content" <?= ($filtre === 'mois_courant') ? 'style="display:none"' : '' ?>>
         <table class="transaction">
           <thead>
             <tr>
-              <th>Date</th>
               <th>Catégorie</th>
               <th>Description</th>
+              <th>Date</th>
               <th>Montant</th>
               <th>Actions</th>
             </tr>
@@ -194,15 +193,15 @@ try {
             <?php if ($filtre === 'tous' && !empty($depensesTous)): ?>
               <?php foreach ($depensesTous as $d): ?>
                 <tr>
-                  <td><?= htmlspecialchars($d['DATE_OPERATION'] ?? '') ?></td>
                   <td><?= htmlspecialchars($d['NOM_CATEGORIE'] ?? 'Non défini') ?></td>
                   <td><?= htmlspecialchars($d['DESCRIPTION'] ?? '') ?></td>
+                  <td><?= htmlspecialchars($d['DATE_OPERATION'] ?? '') ?></td>
                   <td class="montant negatif">-<?= number_format($d['MONTANT'] ?? 0, 0, ',', ' ') ?> FCFA</td>
                   <td>
-                    <a href="modif_depense.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn-icon btn-modifier" title="Modifier">
+                    <a href="modif_depense.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn-icon btn-modifier">
                       <i class="fa-solid fa-edit"></i>
                     </a>
-                    <a href="supp_depense.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn-icon btn-supprimer" title="Supprimer" onclick="return confirm('Supprimer cette dépense ?')">
+                    <a href="supp_depense.php?id=<?= $d['ID_OPERATIONS_'] ?>" class="btn-icon btn-supprimer" onclick="return confirm('Supprimer cette dépense ?')">
                       <i class="fa-solid fa-trash"></i>
                     </a>
                   </td>
@@ -216,6 +215,7 @@ try {
           </tbody>
         </table>
       </div>
+
     </section>
   </main>
 </div>
@@ -223,7 +223,6 @@ try {
 <script src="JS/dropdown.js"></script>
 <script>
 function showTab(id) {
-    // Recharger la page avec le bon filtre
     const url = new URL(window.location);
     url.searchParams.set('filtre', id === 'mois_courant' ? 'mois_courant' : 'tous');
     window.location.href = url.toString();

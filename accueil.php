@@ -5,29 +5,87 @@ require_once 'config/config.php';
 $userId = $_SESSION['id'];
 
 
+// INFOS UTILISATEUR
 $stmt = $mysqlClient->prepare("SELECT NOM_UTILISATEUR, PRENOM FROM utilisateur WHERE ID_UTILISATEUR = ?");
 $stmt->execute([$userId]);
 $user = $stmt->fetch(); 
 
-// Revenus totaux
-$stmt = $mysqlClient->prepare("SELECT SUM(o.MONTANT) as total FROM operation o, categorie c, type t WHERE o.ID_CATEGORIE = c.ID_CATEGORIE AND c.ID_TYPE = t.ID_TYPE AND t.NOM_TYPE = 'Revenu' AND o.ID_UTILISATEUR = ? AND MONTH(o.DATE_OPERATION) = MONTH(CURRENT_DATE()) AND YEAR(o.DATE_OPERATION) = YEAR(CURRENT_DATE())");
+
+// ✅✅✅ REVENUS DU MOIS
+$stmt = $mysqlClient->prepare("
+SELECT SUM(o.MONTANT) as total 
+FROM operation o, categorie c, type t 
+WHERE o.ID_CATEGORIE = c.ID_CATEGORIE 
+AND c.ID_TYPE = t.ID_TYPE 
+AND t.NOM_TYPE = 'Revenu' 
+AND o.ID_UTILISATEUR = ?
+AND MONTH(o.DATE_OPERATION) = MONTH(CURRENT_DATE()) 
+AND YEAR(o.DATE_OPERATION) = YEAR(CURRENT_DATE())
+");
 $stmt->execute([$userId]);
 $revenus = $stmt->fetch();
 
-// Dépenses totales
-$stmt = $mysqlClient->prepare("SELECT SUM(o.MONTANT) as total FROM operation o, categorie c, type t WHERE o.ID_CATEGORIE = c.ID_CATEGORIE AND c.ID_TYPE = t.ID_TYPE AND t.NOM_TYPE = 'Depense' AND o.ID_UTILISATEUR = ? AND MONTH(o.DATE_OPERATION) = MONTH(CURRENT_DATE()) AND YEAR(o.DATE_OPERATION) = YEAR(CURRENT_DATE())");
+
+// ✅✅✅ DÉPENSES DU MOIS
+$stmt = $mysqlClient->prepare("
+SELECT SUM(o.MONTANT) as total 
+FROM operation o, categorie c, type t 
+WHERE o.ID_CATEGORIE = c.ID_CATEGORIE 
+AND c.ID_TYPE = t.ID_TYPE 
+AND t.NOM_TYPE = 'Depense' 
+AND o.ID_UTILISATEUR = ?
+AND MONTH(o.DATE_OPERATION) = MONTH(CURRENT_DATE()) 
+AND YEAR(o.DATE_OPERATION) = YEAR(CURRENT_DATE())
+");
 $stmt->execute([$userId]);
 $depenses = $stmt->fetch();
 
-// 5 dernières transactions
-$stmt = $mysqlClient->prepare("SELECT c.NOM_CATEGORIE, t.NOM_TYPE, o.DESCRIPTION, o.DATE_OPERATION, o.MONTANT FROM operation o, categorie c, type t WHERE o.ID_CATEGORIE = c.ID_CATEGORIE AND c.ID_TYPE = t.ID_TYPE AND o.ID_UTILISATEUR = ? ORDER BY o.DATE_OPERATION DESC LIMIT 5");
+
+// ✅✅✅ 5 DERNIÈRES TRANSACTIONS 
+$stmt = $mysqlClient->prepare("
+SELECT c.NOM_CATEGORIE, t.NOM_TYPE, o.DESCRIPTION, o.DATE_OPERATION, o.MONTANT 
+FROM operation o, categorie c, type t 
+WHERE o.ID_CATEGORIE = c.ID_CATEGORIE 
+AND c.ID_TYPE = t.ID_TYPE 
+AND o.ID_UTILISATEUR = ? 
+ORDER BY o.DATE_OPERATION DESC 
+LIMIT 5
+");
 $stmt->execute([$userId]);
 $transactions = $stmt->fetchAll();
 
-// Solde actuel (revenus - dépenses)
-$totalRevenus = (float)($revenus['total'] );
-$totalDepenses = (float)($depenses['total'] );
+
+
+// TOTAL DE TOUS LES REVENUS
+$stmt = $mysqlClient->prepare("
+SELECT SUM(o.MONTANT) as total 
+FROM operation o, categorie c, type t 
+WHERE o.ID_CATEGORIE = c.ID_CATEGORIE 
+AND c.ID_TYPE = t.ID_TYPE 
+AND t.NOM_TYPE = 'Revenu' 
+AND o.ID_UTILISATEUR = ?
+");
+$stmt->execute([$userId]);
+$revenusTotal = $stmt->fetch();
+
+// TOTAL DE TOUTES LES DÉPENSES
+$stmt = $mysqlClient->prepare("
+SELECT SUM(o.MONTANT) as total 
+FROM operation o, categorie c, type t 
+WHERE o.ID_CATEGORIE = c.ID_CATEGORIE 
+AND c.ID_TYPE = t.ID_TYPE 
+AND t.NOM_TYPE = 'Depense' 
+AND o.ID_UTILISATEUR = ?
+");
+$stmt->execute([$userId]);
+$depensesTotal = $stmt->fetch();
+
+
+// SOLDE FINAL 
+$totalRevenus = (float)($revenusTotal['total'] ?? 0);
+$totalDepenses = (float)($depensesTotal['total'] ?? 0);
 $soldeActuel = $totalRevenus - $totalDepenses;
+
 ?>
 
 <!DOCTYPE html>

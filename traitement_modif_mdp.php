@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute([$mot_de_passe_hash, $email]);
                 
                 if ($stmt->rowCount() > 0) {
-                    $success = "Mot de passe modifié avec succès !";
-                    
+                     header("Location: index.php?success=mdp_modifie");
+                        exit();
                 } else {
                     $error = "Aucune modification effectuée. Vérifiez que l'utilisateur existe.";
                 }

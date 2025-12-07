@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "INSERT INTO utilisateur (PRENOM, NOM_UTILISATEUR, EMAIL, MOT_DE_PASSE,ID_ROLE) VALUES (?, ?, ?, ?, 2)";
         $stmtInsert = $mysqlClient->prepare($sql);
         $stmtInsert->execute([$prenom, $nom_utilisateur, $email, $hash]);
-        header("location: inscription.php?code=2");
+        header("Location: index.php?success=inscription");
         exit();
     }
 }
@@ -48,8 +48,6 @@ if (isset($_GET['code'])) {
     $code = $_GET['code'];
     if ($code == '1') {
         $message = '<p style="color: red; font-size: 18px;">❌ Cet e-mail a déjà été utilisé.</p>';
-    } else if ($code == '2') {
-        $message = '<p style="color: green; font-size: 18px;">✅ Inscription réussie !</p>';
     } else if ($code == '3') {
         $message = '<p style="color: red; font-size: 18px;">❌ Le mot de passe doit contenir au moins 8 caractères.</p>';
     } else if ($code == '4') {
