@@ -1,12 +1,14 @@
-
 .graph-container {
-  grid-area: graph;
   background: #1b103e;
   box-shadow: 0 5px 20px rgba(0,0,0,0.3);
   border: 1px solid rgba(116, 48, 180, 0.2);
   padding: 30px;
   border-radius: 12px;
   text-align: center;
+}
+
+.graph-container.graph-mois {
+  grid-area: graph;
 }
 
 .graph-container h2 {
@@ -82,14 +84,24 @@
     "introduction introduction"
     "graph graph"
     "legend legend"
+    "graph-global graph-global"
+    "legend-global legend-global"
     "stats stats";
+}
+
+.graph-container.graph-global {
+  grid-area: graph-global;
+}
+
+.legend.legend-global {
+  grid-area: legend-global;
 }
 
 .stats.activite {
   grid-area: stats;
 }
 
-.legend.activite {
+.legend.activite.legend-mois {
   grid-area: legend;
 }
 
@@ -227,4 +239,3 @@
   font-size: 14px;
   color: #bbb;
 }
-

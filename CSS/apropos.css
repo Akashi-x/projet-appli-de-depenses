@@ -1,11 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
 body {
       background: #1C1430;
       color: white;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', sans-serif;
       text-align: center;
+      margin: 0;
+      padding: 0;
  }
 
-    
+/* S'assurer que l'en-tête n'est pas affecté par le centrage du body */
+.entete {
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+}
 
     .team {
       display: flex;
@@ -54,7 +67,7 @@ body {
     border: 1px solid #3A2B6E; /* bordure un peu plus claire pour se détacher */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5); /* ombre subtile */
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #ffffff; /* texte blanc */
 }
 

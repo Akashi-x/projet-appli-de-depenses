@@ -68,6 +68,36 @@ foreach ($operations as $index => $op) {
   $values[] = (float)$op['MONTANT'];
   $backgrounds[] = $colorPalette[$index % count($colorPalette)];
 }
+
+// Requête pour toutes les opérations (regroupées par catégorie)
+$stmt = $mysqlClient->prepare(
+    "SELECT c.NOM_CATEGORIE, t.NOM_TYPE, SUM(o.MONTANT) AS total_montant
+     FROM operation o 
+     INNER JOIN categorie c ON o.ID_CATEGORIE = c.ID_CATEGORIE 
+     INNER JOIN type t ON c.ID_TYPE = t.ID_TYPE 
+     WHERE o.ID_UTILISATEUR = ? 
+     GROUP BY c.NOM_CATEGORIE, t.NOM_TYPE
+     ORDER BY total_montant DESC"
+);
+$stmt->execute([$userId]);
+$operationsGlobales = $stmt->fetchAll();
+
+$totalGlobal = 0;
+foreach ($operationsGlobales as $op) { 
+    $totalGlobal += (float)$op['total_montant']; 
+}
+
+$labelsGlobal = [];
+$valuesGlobal = [];
+$backgroundsGlobal = [];
+$typesGlobal = [];
+
+foreach ($operationsGlobales as $index => $op) {
+  $labelsGlobal[] = $op['NOM_CATEGORIE'];
+  $valuesGlobal[] = (float)$op['total_montant'];
+  $backgroundsGlobal[] = $colorPalette[$index % count($colorPalette)];
+  $typesGlobal[] = $op['NOM_TYPE'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -126,13 +156,13 @@ foreach ($operations as $index => $op) {
         <p>Visualisez vos opérations financières</p>
       </section>
 
-      <section class="graph-container">
+      <section class="graph-container graph-mois">
         <h2>Diagramme circulaire des opérations du mois en cours</h2>
         <div class="pie-chart">
           <canvas id="operationsChart" width="400" height="400"></canvas>
         </div>
 
-        <div class="legend activite">
+        <div class="legend activite legend-mois">
           <h3 style="color: #742CB4; margin-bottom: 20px;">Légende des opérations</h3>
           <div class="legend-items">
           <?php
@@ -147,6 +177,37 @@ foreach ($operations as $index => $op) {
                 echo '<div class="legend-name">' . htmlspecialchars($operation['NOM_CATEGORIE']) . '</div>';
                 echo '<div class="legend-details">';
                 echo '<span style="color: ' . $typeColor . ';">' . $signe . number_format($operation['MONTANT']) . ' FCFA</span> ';
+                echo '<span style="color: #742CB4;">(' . $pourcentage . '%)</span>';
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
+          ?>
+          </div>
+        </div>
+      </section>
+
+      <section class="graph-container graph-global">
+        <h2>Diagramme circulaire de toutes les transactions</h2>
+        <div class="pie-chart">
+          <canvas id="operationsGlobalChart" width="400" height="400"></canvas>
+        </div>
+
+        <div class="legend activite legend-global">
+          <h3 style="color: #742CB4; margin-bottom: 20px;">Légende de toutes les opérations</h3>
+          <div class="legend-items">
+          <?php
+            foreach ($operationsGlobales as $index => $operation) {
+                $pourcentage = $totalGlobal > 0 ? round(((float)$operation['total_montant'] / $totalGlobal) * 100, 2) : 0;
+                $couleur = $colorPalette[$index % count($colorPalette)];
+                $typeColor = $operation['NOM_TYPE'] == 'Revenu' ? '#55ff55' : '#ff5555';
+                $signe = $operation['NOM_TYPE'] == 'Revenu' ? '+' : '-';
+                echo '<div class="legend-item">';
+                echo '<div class="legend-color" style="background-color: ' . $couleur . ';"></div>';
+                echo '<div class="legend-text">';
+                echo '<div class="legend-name">' . htmlspecialchars($operation['NOM_CATEGORIE']) . '</div>';
+                echo '<div class="legend-details">';
+                echo '<span style="color: ' . $typeColor . ';">' . $signe . number_format($operation['total_montant']) . ' FCFA</span> ';
                 echo '<span style="color: #742CB4;">(' . $pourcentage . '%)</span>';
                 echo '</div>';
                 echo '</div>';
@@ -252,6 +313,62 @@ foreach ($operations as $index => $op) {
         }
       },
       plugins: [centerText]
+    });
+
+    // Graphique pour toutes les transactions
+    const labelsGlobal = <?php echo json_encode($labelsGlobal, JSON_UNESCAPED_UNICODE); ?>;
+    const dataValuesGlobal = <?php echo json_encode($valuesGlobal, JSON_UNESCAPED_UNICODE); ?>;
+    const backgroundColorsGlobal = <?php echo json_encode($backgroundsGlobal, JSON_UNESCAPED_UNICODE); ?>;
+    const totalGlobal = <?php echo (int)$totalGlobal; ?>;
+
+    // Plugin pour texte central du graphique global
+    const centerTextGlobal = {
+      id: 'centerTextGlobal',
+      afterDraw(chart, args, options) {
+        const {ctx, chartArea: {width, height}} = chart;
+        ctx.save();
+        ctx.fillStyle = '#742CB4';
+        ctx.font = 'bold 16px Poppins, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('Total', width / 2, height / 2 - 10);
+        ctx.fillStyle = '#e5e7eb';
+        ctx.font = '14px Poppins, sans-serif';
+        ctx.fillText(new Intl.NumberFormat('fr-FR').format(totalGlobal) + ' FCFA', width / 2, height / 2 + 12);
+        ctx.restore();
+      }
+    };
+
+    const ctxGlobal = document.getElementById('operationsGlobalChart').getContext('2d');
+    new Chart(ctxGlobal, {
+      type: 'doughnut',
+      data: {
+        labels: labelsGlobal,
+        datasets: [{
+          data: dataValuesGlobal,
+          backgroundColor: backgroundColorsGlobal,
+          borderColor: '#1b103e',
+          borderWidth: 2,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '45%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: (ctx) => {
+                const val = ctx.parsed;
+                const pct = totalGlobal > 0 ? (val / totalGlobal * 100) : 0;
+                return `${ctx.label}: ${new Intl.NumberFormat('fr-FR').format(val)} FCFA (${pct.toFixed(2)}%)`;
+              }
+            }
+          }
+        }
+      },
+      plugins: [centerTextGlobal]
     });
 
 

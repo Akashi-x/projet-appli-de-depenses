@@ -41,7 +41,7 @@ $user = $stmt->fetch();
         </div>
     </header>
     <div class="Profil">
-        <h2>Mon PROFIL</h2>
+        <h2>Mon profil</h2>
         <div class="profil-image">
     <img id="preview" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Photo de profil" class="profile-icon" onclick="document.getElementById('photo').click();"><br><br>
     </div>
