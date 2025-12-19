@@ -51,10 +51,10 @@ require_once __DIR__ . "/config/config.php";
       <img src="IMG/BENJ.jpg" alt="Membre 3">
       <h3>BENJAMIN IBA NDIAYE</h3>
     </div>
-    <div class="member">
+    <div class="member4">
       <img src="IMG/DEV.jpg" alt="Membre 4">
       <h3>DAOUDA SARR</h3>
-      <p>Chef de projet</p>
+      <p>CHEF DE PROJET</p>
     </div>
   </div>
 
